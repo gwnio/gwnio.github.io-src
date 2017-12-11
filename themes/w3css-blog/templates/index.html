@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	<div class="w3-row w3-padding w3-border">
+   		<div class="w3-col l8 s12">
+			{%- for article in articles %}
+				{% include "includes/article_summary.html" %}
+			{%- endfor %}
+		</div>
+		
+		<div class="w3-col l4">
+			{% include "includes/tags.html" %}
+			
+			<hr>
+	
+			{% include "includes/follow_me.html" %}
+		</div>
+	</div>
+
+{% endblock %}

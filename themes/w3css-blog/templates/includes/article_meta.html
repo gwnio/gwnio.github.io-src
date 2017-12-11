@@ -1,0 +1,16 @@
+<div class="article_meta">
+	{% if article.date is defined %}
+		<span class="w3-tag w3-text-white">{{ article.locale_date }}</span>
+	{% endif %}
+	{% if article.category is defined %}
+		<span>Filed under <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a></span>
+	{% endif %}
+	{% if article.tags is defined %}
+		<span>
+			{% for tag in (article.tags | sort) %}
+				<a href="{{ SITEURL }}/{{ tag.url }}">#{{ tag|lower }}</a>
+			{% endfor %}
+		</span>
+	{% endif %}
+	{% include "includes/article_meta_source.html" %}
+</div>

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Entries tagged "{{ tag }}" - {{ SITENAME }}{% endblock %}
+
+{% block content %}
+
+	<div class="w3-row w3-padding w3-border">
+		<div class="w3-col l8 s12">
+			<div class="w3-container w3-white w3-margin w3-padding">
+				<h4>#{{ tag }} ({{ articles|count }}) <a href="{{ SITEURL }}/feeds/{{ tag.slug }}.xml"><i class="fa fa-rss w3-hover-opacity"></i></a></h4>
+			</div>
+			
+			{%- for article in articles %}
+				{% include "includes/article_summary.html" %}
+			{%- endfor %}
+		</div>
+		
+		<div class="w3-col l4">
+			{% include "includes/tags.html" %}
+			
+			<hr>
+	
+			{% include "includes/follow_me.html" %}
+		</div>
+	</div>
+
+{% endblock %}

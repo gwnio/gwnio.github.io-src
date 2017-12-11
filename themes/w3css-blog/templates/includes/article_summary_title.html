@@ -1,0 +1,5 @@
+{% if article.link is defined %}
+	<a href="{{ article.link }}" target="_blank">{{ article.title }}</a>&nbsp;&nbsp;<i class="fa fa-external-link"></i>
+{% else %}
+	<a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+{% endif %}

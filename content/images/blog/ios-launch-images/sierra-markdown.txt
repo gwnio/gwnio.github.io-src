@@ -1,0 +1,23 @@
+Device | | Size | Source Image Size | Filename
+---|---|---|---|---
+iPhone Portrait iOS 5,6 | 1x | | |
+iPhone Portrait iOS 5,6 | 2x | | |
+iPhone Portrait iOS 5,6 | Retina 4 | | |
+iPad Portrait Without Status Bar iOS 5,6 | 1x | | |
+iPad Portrait Without Status Bar iOS 5,6 | 2x | | |
+iPad Portrait iOS 5,6 | 1x | | |
+iPad Portrait iOS 5,6 | 2x | | |
+iPad Landscape Without Status Bar iOS 5,6 | 1x | | |
+iPad Landscape Without Status Bar iOS 5,6 | 2x | | |
+iPad Landscape iOS 5,6 | 1x | | |
+iPad Landscape iOS 5,6 | 2x | | |
+iPhone Portrait iOS 8,9 | Retina HD 5.5 | 1242x2208 | 1242x2208 |
+iPhone Portrait iOS 8,9 | Retina HD 4.7 | | |
+iPhone Landscape iOS 8,9 | Retina HD 5.5 | | |
+iPad Pro 12" | | 2048x2732 | 2048x2732 | Default-2732h-Portrait~ipad.png
+iPhone Portrait iOS 7-9 | 2x | 640x960 | 1242x2208 | Default-480h-Portrait@2x~iphone.png
+iPhone Portrait iOS 7-9 | Retina 4 | 640x1136 | 1242x2208 | Default-480h-Portrait@2x~iphone-retina4.png
+iPad Portrait iOS 7-9 | 1x | 768x1024 | 2048x2732 | Default-1024h-Portrait~ipad.png
+iPad Portrait iOS 7-9 | 2x | 1536x2048 | 2048x2732 | Default-1024h-Portrait@2x~ipad.png
+iPad Landscape iOS 7-9 | 1x | | |
+iPad Landscape iOS 7-9 | 2x | | |

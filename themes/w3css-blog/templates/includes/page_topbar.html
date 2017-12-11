@@ -1,0 +1,10 @@
+{% block page_topbar %}
+	<div class="w3-bar w3-black" id="my-topbar">
+		<a href="javascript:void(0);" class="w3-bar-item w3-button my-topbar-menu-button" onclick="topbarMenuButtonClickHandler()"><i class="fa fa-bars"></i></a>
+		<a href="{{ SITEURL }}/index.html" class="w3-bar-item w3-button"><i class="fa fa-home"></i></a>
+		<a href="{{ SITEURL }}/blog" class="w3-bar-item w3-button"><b>Blog</b></a>
+		{% if ARCHIVES_SAVE_AS %}
+			<a href="{{ SITEURL }}/{{ ARCHIVES_URL | default('archives.html') }}" class="w3-bar-item w3-button"><b>Archives</b></a>
+		{% endif %}
+	</div>
+{% endblock %}
