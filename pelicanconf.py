@@ -6,7 +6,6 @@ from __future__ import unicode_literals
 AUTHOR = 'Rg'
 SITENAME = '@gwnio'
 SITEURL = 'http://localhost:8000'
-SITEURL = ''
 SITE_DESCRIPTION = 'Notes, learnings and other miscellaneous things'
 
 PATH = 'content'
@@ -30,12 +29,11 @@ TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
+# Social
 TWITTER_USERNAME = ''
 GITHUD_ID = ''
 
-# Social widget
-# 'Twitter': 'https://twitter.com/' + TWITTER_USERNAME,
-SOCIAL = {'Twitter': '',
+SOCIAL = {'Twitter': 'https://twitter.com/' + TWITTER_USERNAME,
           'Github':'https://github.com/' + GITHUD_ID,
           'LinkedIn':'',
           'Facebook':'',
@@ -55,14 +53,14 @@ OUTPUT_SOURCES = True
 OUTPUT_SOURCES_EXTENSION = ".txt"
 
 # URL configuration
-ARTICLE_URL = '{date:%Y}/{slug}.html'
-ARTICLE_SAVE_AS = '{date:%Y}/{slug}.html'
 PAGE_URL = '{slug}/'
 PAGE_SAVE_AS = PAGE_URL + 'index.html'
-CATEGORY_URL = '{slug}/'
-CATEGORY_SAVE_AS = '{slug}/index.html'
-TAG_URL = '{slug}/'
-TAG_SAVE_AS = '{slug}/index.html'
+ARTICLE_URL = 'blog/{date:%Y}/{slug}.html'
+ARTICLE_SAVE_AS = 'blog/{date:%Y}/{slug}.html'
+CATEGORY_URL = 'category/{slug}/'
+CATEGORY_SAVE_AS = 'category/{slug}/index.html'
+TAG_URL = 'tag/{slug}/'
+TAG_SAVE_AS = 'tag/{slug}/index.html'
 ARCHIVES_URL = 'archives/'
 ARCHIVES_SAVE_AS = 'archives/index.html'
 

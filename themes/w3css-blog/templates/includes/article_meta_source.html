@@ -1,5 +1,5 @@
 {% if article is defined %}
-	{% set source_url = SITEURL + "/" + article.date|strftime('%Y') + "/" + article.slug + ".txt" %}
+	{% set source_url = SITEURL + "/blog/" + article.date|strftime('%Y') + "/" + article.slug + ".txt" %}
 {% elif page is defined %}
 	{% set source_url = SITEURL + "/" + page.slug + ".txt" %}
 {% endif %}
