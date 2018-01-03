@@ -14,9 +14,9 @@
 
 {% block content %}
 
-	<div class="w3-row w3-padding w3-border">
-   		<div class="w3-col l8 s12 w3white">
-			<div class="w3-container w3-white w3-margin">
+	<div class="w3-row">
+   		<div class="w3-col l8 s12 w3-padding">
+   			<div class="w3-white">
 				<div class="w3-container">
 					<h3>{{ article.title }}</h3>
 					{% include "includes/article_meta.html" %}
@@ -33,20 +33,20 @@
 				</div>
 			</div>
 			
-			<hr>
-			
-			<div class="w3-container w3-white w3-margin">
-				<h2>Comments</h2>
-				{% include "includes/disqus_comments.html" %}
+			<div class="w3-margin-top w3-white">
+				<div class="w3-padding">
+					<h2>Comments</h2>
+					{% include "includes/script_disqus_comments.html" %}
+				</div>
 			</div>
 		</div>
 		
-		<div class="w3-col l4">
+		<div class="w3-col l4 w3-padding">
 			{% include "includes/tags.html" %}
 			
-			<hr>
-	
-			{% include "includes/follow_me.html" %}
+			<div class="w3-margin-top">
+				{% include "includes/follow_me.html" %}
+			</div>
 		</div>
 	</div>
 

@@ -2,19 +2,25 @@
 
 {% block content %}
 
-	<div class="w3-row w3-padding w3-border">
-   		<div class="w3-col l8 s12">
+	<div class="w3-row">
+   		<div class="w3-col l8 s12 w3-padding">
 			{%- for article in articles %}
-				{% include "includes/article_summary.html" %}
+				{% if loop.index > 1 %}
+					<div class="w3-margin-top">
+				{% endif %}
+					{% include "includes/article_summary.html" %}
+				{% if loop.index > 1 %}
+					</div>
+				{% endif %}
 			{%- endfor %}
 		</div>
 		
-		<div class="w3-col l4">
+		<div class="w3-col l4 w3-padding">
 			{% include "includes/tags.html" %}
 			
-			<hr>
-	
-			{% include "includes/follow_me.html" %}
+			<div class="w3-margin-top">
+				{% include "includes/follow_me.html" %}
+			</div>
 		</div>
 	</div>
 
