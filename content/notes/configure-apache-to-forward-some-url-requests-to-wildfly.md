@@ -1,6 +1,9 @@
 Title: Configure Apache to Forward some Url Reqests to Wildfly
 date: 2018-01-03 09:48:23 -0400
 Tags: tech, apache, wildfly, mod_proxy
+Image: images/blog/configure-apache-to-forward-some-url-requests-to-wildfly/arrows-1738067_1280_350.jpg
+ImageWidth: 1280
+ImageHeight: 350
 
 I created a website ([CheapThyCable.com](https://www.cheapthycable.com){:target="_blank"}) that is composed of a static blog and a JavaEE application.  Originally I developed it so that all content was served out by the application server whose content was comprised from a war file.
 <!-- PELICAN_END_SUMMARY -->

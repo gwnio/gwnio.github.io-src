@@ -5,8 +5,9 @@ from __future__ import unicode_literals
 # Site information
 AUTHOR = 'Rg'
 SITENAME = '@gwnio'
-SITEURL = 'http://localhost:8000'
-SITE_DESCRIPTION = 'Notes, learnings and other miscellaneous things'
+DOMAIN = 'localhost:8000'
+SITEURL = 'http://' + DOMAIN
+SITE_DESCRIPTION = 'Just documenting some things as I encounter'
 
 PATH = 'content'
 STATIC_PATHS = ['images', 'pdfs', 'extra']

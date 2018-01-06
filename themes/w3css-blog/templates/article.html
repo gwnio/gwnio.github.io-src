@@ -7,6 +7,7 @@
 {% endif %}
 
 {% block tags %}
+{% include "includes/article_head_share.html" %}
 {% for t in article.tags %}
 	<meta name="tag" content="{{ t.slug }}">
 {% endfor %}

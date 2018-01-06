@@ -9,10 +9,6 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
-	{% if TWITTER_USERNAME %}
-		<meta name="twitter:site" content="@{{ TWITTER_USERNAME }}" />
-	{% endif %}
-	
 	<meta name="dc.language" content="{% if article and article.language %}{{ article.language }}{% else %}{{ DEFAULT_LANG }}{% endif %}" />
 	<meta name="dc.license" content="{{ BLOG_LICENSE }}">
 	{% block tags %}{% endblock %}
