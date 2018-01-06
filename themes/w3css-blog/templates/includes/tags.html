@@ -4,7 +4,9 @@
 	</div>
 	<div class="w3-padding">
 		{%- for tag, articles in tags|sort %}
-			<a href="{{ SITEURL }}/{{ tag.url }}" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">{{ tag }} ({{ articles|count }})</a>
+			{% if tag|lower not in TAGS_TO_EXCLUDE %}
+				<a href="{{ SITEURL }}/{{ tag.url }}" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">{{ tag }} ({{ articles|count }})</a>
+			{% endif %}
 		{% endfor %}
 	</div>
 </div>

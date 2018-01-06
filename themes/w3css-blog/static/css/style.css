@@ -2060,6 +2060,63 @@ hr {
 .w3-margin-xxsmall {
   margin: 3px !important;
 }
+.w3-button-facebook {
+  color: #fff !important;
+  background-color: #3b5998 !important;
+  border-color: #3b5998 !important;
+}
+.w3-button-facebook:hover {
+  color: #3b5998 !important;
+  background-color: #fff !important;
+  border-color: #3b5998 !important;
+}
+.w3-button-twitter {
+  color: #fff !important;
+  background-color: #326ada !important;
+  border-color: #326ada !important;
+}
+.w3-button-twitter:hover {
+  color: #326ada !important;
+  background-color: #fff !important;
+  border-color: #326ada !important;
+}
+.w3-button-google-plus {
+  color: #fff !important;
+  background-color: #d34836 !important;
+  border-color: #d34836 !important;
+}
+.w3-button-google-plus:hover {
+  color: #d34836 !important;
+  background-color: #fff !important;
+  border-color: #d34836 !important;
+}
+.w3-button2-facebook {
+  color: #3b5998 !important;
+  background-color: #fff !important;
+  border-color: #3b5998 !important;
+}
+.w3-button2-facebook:hover {
+  color: #fff !important;
+  background-color: #3b5998 !important;
+}
+.w3-button2-twitter {
+  color: #326ada !important;
+  background-color: #fff !important;
+  border-color: #326ada !important;
+}
+.w3-button2-twitter:hover {
+  color: #fff !important;
+  background-color: #326ada !important;
+}
+.w3-button2-google-plus {
+  color: #d34836 !important;
+  background-color: #fff !important;
+  border-color: #d34836 !important;
+}
+.w3-button2-google-plus:hover {
+  color: #fff !important;
+  background-color: #d34836 !important;
+}
 body,
 h1,
 h2,
@@ -2069,6 +2126,16 @@ h5,
 h6,
 h7 {
   font-family: Verdana, sans-serif;
+}
+.image-responsive {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+.image-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .article_meta span {
   color: #6C7487;

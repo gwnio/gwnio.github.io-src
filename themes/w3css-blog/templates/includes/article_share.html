@@ -1,14 +1,19 @@
-{% set facebook_url = "http://www.facebook.com/sharer.php?u=https://www.google.com" %}
+{% set article_url = SITEURL + "/" + article.url %}
+{% set facebook_url = "http://www.facebook.com/sharer.php?u=" + article_url %}
 {% set facebook_title = "Share on Facebook" %}
-{% set tweet_url = "https://twitter.com/intent/tweet?text=" + article.summary|striptags %}
+{% set tweet_url = "https://twitter.com/share?url=" + article_url + "&text=" + article.summary|striptags %}
 {% set tweet_title = "Share on Twitter" %}
-<!--<div class="w3-row w3-padding-small w3-center">
+{% set google_url = "https://plus.google.com/share?url=" + article_url %}
+{% set google_title = "Share on Google+" %}
+<div class="w3-row w3-margin w3-center">
 	<div class=w3-hide-small>
-		<a href="{{ facebook_url }}" title="{{ facebook_title }}" class="w3-button w3-white w3-border"><i class="fa fa-facebook w3-margin-right"></i><b>Facebook</b></a>
-		<a href="{{ tweet_url }}" title="{{ tweet_title }}" class="w3-button w3-white w3-border"><i class="fa fa-twitter w3-margin-right"></i><b>Twitter</b></a>
+		<a href="{{ facebook_url }}" title="{{ facebook_title }}" class="w3-button w3-border w3-button-facebook" target="_blank"><i class="fa fa-facebook w3-margin-right"></i><b>Facebook</b></a>
+		<a href="{{ tweet_url }}" title="{{ tweet_title }}" class="w3-button w3-border w3-button-twitter" target="_blank"><i class="fa fa-twitter w3-margin-right"></i><b>Twitter</b></a>
+		<a href="{{ google_url }}" title="{{ google_title }}" class="w3-button w3-border w3-button-google-plus" target="_blank"><i class="fa fa-google-plus w3-margin-right"></i><b>Google</b></a>
 	</div>
 	<div class="w3-hide-large w3-hide-medium">
-		<a href="{{ facebook_url }}" title="{{ facebook_title }}" class="w3-button w3-black w3-padding-medium"><i class="fa fa-facebook"></i></a>
-		<a href="{{ tweet_url }}" title="{{ tweet_title }}" class="w3-button w3-black w3-padding-medium"><i class="fa fa-twitter"></i></a>
+		<a href="{{ facebook_url }}" title="{{ facebook_title }}" class="w3-button w3-border w3-padding-medium w3-button-facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="{{ tweet_url }}" title="{{ tweet_title }}" class="w3-button w3-border w3-padding-medium w3-button-twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="{{ google_url }}" title="{{ google_title }}" class="w3-button w3-border w3-padding-medium w3-button-google-plus" target="_blank"><i class="fa fa-google-plus"></i></a>
 	</div>
-</div>-->
+</div>
