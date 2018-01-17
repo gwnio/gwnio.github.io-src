@@ -3,6 +3,7 @@ date: 2018-01-13 09:48:23 -0400
 Tags: rg-archetype-j2ee-angularjs, wildfly, angularjs, ui-router, requirejs, headjs, bootstrap
 
 I created a project on github called [rg-archetype-j2ee-angularjs](https://github.com/gwnio/rg-archetype-j2ee-angularjs){:target="_blank"}.  This is a J2EE project with a AngularJS front end that is intended to be a starter kit for someone interested in creating a AngularJS single page application.  This project, out of the box, comes with a fully functional login screen, signup screen and basic dashboard screen.  
+<!-- PELICAN_END_SUMMARY -->
 
 Briefly about the application:
 

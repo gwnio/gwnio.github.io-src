@@ -4,14 +4,14 @@
 
 	<div class="w3-row">
    		<div class="w3-col l8 s12 w3-padding">
+   			<div class="w3-margin-bottom">
+   				{% include "includes/index_pin.html" %}
+   			</div>
+   			
 			{% for article in articles %}
-				{% if loop.index > 1 %}
-					<div class="w3-margin-top">
-				{% endif %}
+				<div class="w3-margin-top">
 					{% include "includes/article_summary.html" %}
-				{% if loop.index > 1 %}
-					</div>
-				{% endif %}
+				</div>
 			{% endfor %}
 		</div>
 		

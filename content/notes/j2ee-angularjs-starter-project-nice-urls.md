@@ -1,8 +1,9 @@
-Title: J2EE AngularJS Nice Urls
+Title: AngularJS Nice Urls
 date: 2018-01-14 09:48:23 -0400
 Tags: rg-archetype-j2ee-angularjs, angularjs, ui-router, rewrite
 
 I created a project on github called [rg-archetype-j2ee-angularjs](https://github.com/gwnio/rg-archetype-j2ee-angularjs){:target="_blank"}.  This project can be thought of as being two single page applications, a public domain module (i.e. login, signup, forget password screens, etc.) and a secure domain module containing functionality requiring login credentials.  I did this for faster loading of the login and signup screens, hopefully making for a slightly better user experience.  Also logically, I just like to think of this app as two single page applications.  This can easily be converted to one single page application if desired.  Each main domain module has their own index page, one for [public](https://github.com/gwnio/rg-archetype-j2ee-angularjs/blob/master/WebContent/client/src/index-app-public.jsp){:target="_blank"} and another for [secure](https://github.com/gwnio/rg-archetype-j2ee-angularjs/blob/master/WebContent/client/src/index-app-secure.jsp){:target="_blank"}.
+<!-- PELICAN_END_SUMMARY -->
 
 Because this project's index pages are jsps, the context path from the ```javax.servlet.http.HttpServletRequest``` object is used to set the [```<base href=".../">```](https://github.com/gwnio/rg-archetype-j2ee-angularjs/blob/62336a6e6a6c4f8e234f6e52e8c07da315dc8c25/WebContent/client/src/index-app-public.jsp#L6){:target="_blank} for relative links:
 
@@ -20,5 +21,4 @@ Lastly, this project uses [ui-router](https://github.com/angular-ui/ui-router){:
 
 [gist:id=dcfc29df2bc4bd7293934c9db9a09f4b]
 
-
- 
+Follow other writings on this project [here](/tag/rg-archetype-j2ee-angularjs).
