@@ -1,6 +1,6 @@
 Title: Hibernate Notes
 date: 2017-03-11 09:48:23 -0400
-Tags: tech, hibernate
+Tags: hibernate
 
 The following are some quotes and notes from taken from Hibernate 5.0 documentation.
 
@@ -40,7 +40,7 @@ The following are some quotes and notes from taken from Hibernate 5.0 documentat
 
 ## Declarative transaction demarcation
 * you declare when you want to work inside a transaction, then the runtime environment handles this concern
-* EJB container privdes declarative transaction services in Java; called container-managed transactions (CMT)
+* EJB container provides declarative transaction services in Java; called container-managed transactions (CMT)
 
 ## 10.1.2 on
 * Programmatic transactions in Java SE

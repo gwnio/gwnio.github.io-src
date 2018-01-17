@@ -1,6 +1,6 @@
 Title: Lipo Batteries
 Date: 2014-02-14 11:10:23 -0400
-Tags: tech, lipo, batteries
+Tags: lipo, batteries
 
 ## Table of contents
 1. [Intro](#intro)

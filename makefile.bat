@@ -2,6 +2,6 @@
 rem Compile style
 call lessc .\themes\w3css-blog\static\less\style.less .\themes\w3css-blog\static\css\style.css
 
-call pelican content
+call C:\dev\Python36\Scripts\pelican content
 
 pause

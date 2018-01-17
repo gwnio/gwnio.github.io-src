@@ -27,5 +27,3 @@ https://www.w3schools.com/w3css/tryw3css_templates_fashion_blog.htm
 http://necolas.github.io/normalize.css/
 
 ## TODO
- * share via facebook or twitter
- * 404 page (https://help.github.com/articles/creating-a-custom-404-page-for-your-github-pages-site/)

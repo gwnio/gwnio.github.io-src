@@ -1,7 +1,7 @@
 Title: Agile Software Development
 Date: 2017-02-07 11:10:23 -0400
 Summary: These are just some basic notes that I took while doing some research on agile softwarement development.
-Tags: tech, agile, software development
+Tags: agile, software development
 
 ## Table of contents
 1. [Defined](#defined)

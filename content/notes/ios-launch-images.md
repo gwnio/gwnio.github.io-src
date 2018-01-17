@@ -1,6 +1,6 @@
 Title: iOS Launch Images
 Date: 2017-03-03 08:10:23 -0400
-Tags: tech, ios, xcode
+Tags: ios, xcode
 
 ## Table of Contents
 

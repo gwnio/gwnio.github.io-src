@@ -1,7 +1,7 @@
 Title: How To Style a Markdown Table in Pelican
 date: 2017-11-17 09:48:23 -0400
 Summary: This explains how to style a markdown table in the static site generator pelican.
-Tags: tech, howto, pelican, markdown, css
+Tags: pelican, markdown, css
 
 In your style sheet define a custom class that styles a HTML table.
 

@@ -33,14 +33,15 @@ AUTHOR_FEED_RSS = None
 # Social
 TWITTER_USERNAME = ''
 GITHUD_ID = 'gwnio'
+INSTAGRAM = ''
 
 SOCIAL = {'Twitter': 'https://twitter.com/' + TWITTER_USERNAME,
           'Github': 'https://github.com/' + GITHUD_ID,
-          'LinkedIn':'',
-          'Facebook':'',
-          'Instagram':'',
-          'Snapchat':'',
-          'Pinterest':'',
+          'LinkedIn': '',
+          'Facebook': '',
+          'Instagram':  'https://www.instagram.com/' + INSTAGRAM,
+          'Snapchat': '',
+          'Pinterest': '',
           'Email': ''}
 
 DEFAULT_PAGINATION = False
@@ -64,8 +65,6 @@ TAG_URL = 'tag/{slug}/'
 TAG_SAVE_AS = 'tag/{slug}/index.html'
 ARCHIVES_URL = 'archives/'
 ARCHIVES_SAVE_AS = 'archives/index.html'
-
-TAGS_TO_EXCLUDE = {'christian'}
 
 DISQUS_SITENAME = ''
 GOOGLE_ANALYTICS = ''

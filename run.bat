@@ -1,4 +1,4 @@
 
 cd output/local
 
-call python -m pelican.server
+call C:\dev\Python36\python -m pelican.server

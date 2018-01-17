@@ -1,32 +1,31 @@
 Title: JBoss4 Quartz 2.2x Setup
 Date: 2015-12-18 11:10:23 -0400
 Summary: This explains how to setup Quartz scheduler with JBoss4.
-Tags: tech, howto, jboss, quartz
+Tags: jboss, quartz
 
 ## Step 1
 
-quartz-2.2.1-distribution.zip\quartz-2.2.1\lib
+```quartz-2.2.1-distribution.zip\quartz-2.2.1\lib```
 
-Place the jar files in your project under WEB-INF/lib.  Make sure the same jar files but with different versioning does not already exist.
+Place the jar files in your project under ```WEB-INF/lib```.  Make sure the same jar files but with different versioning does not already exist.
 
 ## Step 2
 
 Remove quartz jar files that came with jboss to avoid version conflict on server startup
 
-	* JBOSS_HOME\server\default\deploy\quartz-ra.rar
-	* JBOSS_HOME\server\default\lib\quartz.jar
+[gist:id=fcb9851a820b1ccea6daac3eef32f6bb]
 
 ## Step 3
 
-quartz.properties
+```quartz.properties```
 
-I placed mine in JBOSS_HOME\bin\conf.  The documentation also specifies you can place it under WEB-INF.
+I placed mine in ```JBOSS_HOME\bin\conf```.  The documentation also specifies you can place it under ```WEB-INF```.
 
 [gist:id=9f08014e03d372d30ff533ff76c34c33]
 
 ## Step 4
 
-Under {QUARTZ Root}\docs\dbTables they provide the table creation scripts for several databases.  Go ahead and create the tables for your database.
+Under ```{QUARTZ Root}\docs\dbTables``` they provide the table creation scripts for several databases.  Go ahead and create the tables for your database.
 
 ## Step 5
 
@@ -34,15 +33,11 @@ I initialized the scheduler within a [servlet container](http://quartz-scheduler
 
 ## Step 6
 
-Do you need to use hibernate in your implementation of org.quartz.Job?
+Do you need to use hibernate in your implementation of ```org.quartz.Job```?
 
 If so then start a transaction.
 
-<div class="wordwrap" markdown=1>
-```
-HibernateSessionFactory.getSessionFactory().getCurrentSession().beginTransaction();
-```
-</div>
+```HibernateSessionFactory.getSessionFactory().getCurrentSession().beginTransaction();```
 
 ## Step 7
 

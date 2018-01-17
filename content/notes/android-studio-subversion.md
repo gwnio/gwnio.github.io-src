@@ -1,6 +1,6 @@
 Title: Android Studio Subversion
 Date: 2016-05-27 08:10:23 -0400
-Tags: tech, howto, android, android studio, intellij, eclipse, svn, subversion, tortoisesvn
+Tags: android, android studio, intellij, eclipse, svn, subversion, tortoisesvn
 
 ## Scenario
 
@@ -14,26 +14,19 @@ For this tutorial I'm using Subversion and TortoiseSVN Windows client.
 
 ## TortoiseSVN
 
-A quick note on how to move versioned folders and files in Windows Explorer and maintain history using TortoiseSVN.  Right-click the folder that is being moved and (while holding right-click) drag to the destination folder, for this tutorial I'm referring to this as a right-click-drag.  A context menu will appear with several options by TortoiseSVN.  Choose __SVN Move versioned item(s) here__.  Note that some versioned files displaying with a green checkmark by TortoiseSVN may display with a blue plus symbol after being moved using TortoiseSVN.  This is ok and the file will have its history maintained, the blue plus just indicates its new in the context of this folder.
+A quick note on how to move versioned folders and files in Windows Explorer and maintain history using TortoiseSVN.  Right-click the folder that is being moved and (while holding right-click) drag to the destination folder, for this tutorial I'm referring to this as a right-click-drag.  A context menu will appear with several options by TortoiseSVN.  Choose ```SVN Move versioned item(s) here```.  Note that some versioned files displaying with a green checkmark by TortoiseSVN may display with a blue plus symbol after being moved using TortoiseSVN.  This is ok and the file will have its history maintained, the blue plus just indicates its new in the context of this folder.
 
 ## Exclude from versioning
 
 Below are Android Studio and build related folders and files to exclude from version control.  In the below steps, these will be added to the ignore list.
 
-	* .gradle/
-	* .idea/
-	* {project module}/build/
-	* {project module}/{project module}.iml
-	* Build
-	* {project}.iml
-	* local.properties
+[gist:id=bcd98e1e4d28be3125280a04dd6032f2]
 
 ## Steps
 
-
 ### Step 1
 
-Tag the current version of the project in trunk such that it indicates its the final version from eclipse i.e. __final_eclipse__.  This can be done using the __Copy to...__ in TortoiseSVN repository browser.
+Tag the current version of the project in trunk such that it indicates its the final version from eclipse i.e. __final_eclipse__.  This can be done using the ```Copy to...``` in TortoiseSVN repository browser.
 
 ### Step 2
 
@@ -47,71 +40,57 @@ Copy the files and folders under the Android Studio root project folder to the S
 
 Delete the following folders brought over from the Android Studio project as they will be replaced by the corresponding versioned folders.
 
-	* {project module}/build/
-	* {project module}/libs/
-	* {project module}/src/
+[gist:id=490b03bdd04527e6341325970c07baec]
 
 ### Step 5
 
-Add just the {project module} folder to SVN.  Right-click the folder and from the context menu choose the TortoiseSVN option __Add...__.  Note you may have to uncheck the {project module}.iml and build.gradle files.
+Add just the ```{project module}``` folder to SVN.  Right-click the folder and from the context menu choose the TortoiseSVN option ```Add...```.  Note you may have to uncheck the ```{project module}.iml``` and ```build.gradle``` files.
 
 ### Step 6
 
-Move the versioned src folder to the {project module} folder.  Right-click-drag src to {project module} and from the context menu choose __SVN Move versioned item(s) here__.
+Move the versioned src folder to the ```{project module}``` folder.  Right-click-drag src to ```{project module}``` and from the context menu choose ```SVN Move versioned item(s) here```.
 
 ### Step 7
 
-Move the versioned libs folder to {project module} folder.  Right-click-drag libs to {project module} and from the context menu choose __SVN Move versioned item(s) here__.
+Move the versioned libs folder to ```{project module}``` folder.  Right-click-drag libs to ```{project module}``` and from the context menu choose ```SVN Move versioned item(s) here```.
 
 ### Step 8
-Under {project module}/src create the following folders:
 
-	* main/
-	* main/java/
+Under ```{project module}/src``` create the following folders:
+
+[gist:id=287b363befeebed07ad7d8a6e2da5b33]
 
 ### Step 9
 
-Add the new folders from step 8 to version control. On the main folder, right-click and from the context menu choose the TortoiseSVN option __Add...__.
+Add the new folders from step 8 to version control. On the main folder, right-click and from the context menu choose the TortoiseSVN option ```Add...```.
 
 ### Step 10
 
-Move the versioned java src folder.  Right-click-drag {project module}/src/com to {project module}/src/main/java and from the context menu choose __SVN Move versioned item(s) here__.
+Move the versioned java src folder.  Right-click-drag ```{project module}/src/com``` to ```{project module}/src/main/java``` and from the context menu choose ```SVN Move versioned item(s) here```.
 
 ### Step 11
 
-Move the versioned assets folder.  Right-click-drag assets to {project module}/src/main and from the context menu choose __SVN Move versioned item(s) here__.
+Move the versioned assets folder.  Right-click-drag assets to ```{project module}/src/main``` and from the context menu choose ```SVN Move versioned item(s) here```.
 
 ### Step 12
 
-Move the versioned res folder.  Right-click-drag res to {project module}/src/main and from the context menu choose __SVN Move versioned item(s) here__.
+Move the versioned res folder.  Right-click-drag res to ```{project module}/src/main``` and from the context menu choose ```SVN Move versioned item(s) here```.
 
 ### Step 13
 
-Move the versioned AndroidManifest.xml file.  Right-click-drag AndroidManifest.xml to {project module}/src/main and from the context menu choose __SVN Move versioned item(s) here__.
+Move the versioned AndroidManifest.xml file.  Right-click-drag AndroidManifest.xml to ```{project module}/src/main``` and from the context menu choose ```SVN Move versioned item(s) here```.
 
 ### Step 14
-Add the following folders and files to version control.  Right-click the folder or file and from the context menu choose the TortoiseSVN option __Add...__:
 
-	* gradle/ (not to be confused with .gradle)
-	* build.gradle
-	* gradlew
-	* gradlew.bat
-	* proguard-project.txt (if it is not already versioned)
-	* project.properties (if it is not already versioned)
-	* settings.gradle
-	* {project module}/build.gradle
+Add the following folders and files to version control.  Right-click the folder or file and from the context menu choose the TortoiseSVN option ```Add...```:
+
+[gist:id=42a982d2e5b3f76f9a4702b91acbeaf7]
 
 ### Step 15
 
-Above I mentioned folders and files to exclude from versioning.  You could delete these to exclude them from version control but because some of these will be regenerated by the Android Studio environment I went ahead and added them to the ignore list.  To do so, right-click and from the context menu choose the TortoiseSVN option __Add to ignore list__ then choose the recursive option for folders.  Add the following to the ignore list:
+Above I mentioned folders and files to exclude from versioning.  You could delete these to exclude them from version control but because some of these will be regenerated by the Android Studio environment I went ahead and added them to the ignore list.  To do so, right-click and from the context menu choose the TortoiseSVN option ```Add to ignore list``` then choose the recursive option for folders.  Add the following to the ignore list:
 
-	* .gradle/
-	* .idea/
-	* {project module}/build/
-	* {project module}/{project module}.iml
-	* Build
-	* {project}.iml
-	* local.properties
+[gist:id=50b223484fa4a97420ca6d444db855d5]
 
 ### Step 16
 

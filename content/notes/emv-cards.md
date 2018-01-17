@@ -1,6 +1,6 @@
 Title: EMV Cards
 Date: 2015-09-08 11:10:23 -0400
-Tags: tech, emv
+Tags: emv cards
 
 The following are some notes I took while doing research on EMV cards.
 

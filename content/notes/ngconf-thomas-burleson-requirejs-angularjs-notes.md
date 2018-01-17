@@ -1,6 +1,6 @@
 Title: Ng-conf Thomas Burleson Angular and RequireJS Talk Notes
 Date: 2017-06-14 11:10:23 -0400
-Tags: tech, angularjs, requirejs, grunt
+Tags: angularjs, requirejs, grunt
 
 ## Intro
 
@@ -9,7 +9,7 @@ The following are notes I have taking from a talk that Thomas Burleson gave at n
 <!-- PELICAN_END_SUMMARY -->
 The talk can be found [here](https://www.youtube.com/watch?v=4yulGISBF8w){:target="_blank"} and was very helpful with my angularjs project.  I did not attend this conference, rather I found this resource on Youtube.
 
-In the below notes, I have also added links to examples in my personal project where I implemented some of the concepts the speaker discusses.
+In the below notes, I have also added links to examples in a [J2EE AngularJS starter project](https://github.com/gwnio/rg-archetype-j2ee-angularjs){:target="_blank"} I created which implements some of the concepts the speaker discusses.
 
 ### Is RequireJS needed in your Angular project? [2:17](https://www.youtube.com/watch?v=4yulGISBF8w#t=02m17s){:target="_blank"}
 
@@ -17,21 +17,13 @@ In the below notes, I have also added links to examples in my personal project w
 
 Load code in one js file, this is ok for simple applications.
 
-<div class="wordwrap" markdown=1>
-```
-angular.module().config().service().controller()
-```
-</div>
+```angular.module().config().service().controller()```
 
 #### Option 2
 
 Organize by packages, manually load the dependencies via imports.  You have to remember the dependencies and get the order of loading right.  This is very difficult for large projects and does not scale well.
 
-<div class="wordwrap" markdown=1>
-```
-<script src='...\sourceFile.js></script>
-```
-</div>
+```<script src='...\sourceFile.js></script>```
 
 ### Need: package dependency manager
 
@@ -65,7 +57,7 @@ Angular | construction and module dependencies
 
 #### **define()**
 
-* Allows you to define factory function that gets called when your dependencies are resolved.  [See here for example](https://github.com/gwnio/Xcbl/blob/master/WebContent/client/src/app/gu/MainModule.js){:target="_blank"}.
+* Allows you to define factory function that gets called when your dependencies are resolved.  [See here for example](https://github.com/gwnio/rg-archetype-j2ee-angularjs/blob/62336a6e6a6c4f8e234f6e52e8c07da315dc8c25/WebContent/client/src/app/public/MainModule.js#L1){:target="_blank"}.
 * Create [AMD definition](https://github.com/amdjs/amdjs-api/wiki/AMD){:target="_blank"} - allows you to load your js files in any order, but dependencies defined what triggers get pulled.
 * Ready handlers
     * Called when dependencies resolve, if no dependencies are defined then the ready handler is called immediately i.e. define([], function(){})
@@ -76,39 +68,31 @@ Angular | construction and module dependencies
 * Id in the cached registry is the file name
 * Builds tree of dependencies and when the handlers fire it creates a flat registry of values stored by dependency ids
     * Values are usually references to classes or functions
-* BUT nothing happens until at least one call to require().  [See here for example](https://github.com/gwnio/Xcbl/blob/master/WebContent/client/src/assets/js/boot-prod-app-secure.js){:target="_blank"}.
+* BUT nothing happens until at least one call to require().  [See here for example](https://github.com/gwnio/rg-archetype-j2ee-angularjs/blob/62336a6e6a6c4f8e234f6e52e8c07da315dc8c25/WebContent/client/src/assets/js/boot-public.js#L47){:target="_blank"}.
 
 [gist:id=80edf1a206609494a7d7befd7bece55c]
 
 #### **require()**
 
-* You can register a callback function that is invoked when all your dependencies have resolved.  [See here for example](https://github.com/gwnio/Xcbl/blob/master/WebContent/client/src/assets/js/boot-prod-app-secure.js){:target="_blank"}.
+* You can register a callback function that is invoked when all your dependencies have resolved.  [See here for example](https://github.com/gwnio/rg-archetype-j2ee-angularjs/blob/62336a6e6a6c4f8e234f6e52e8c07da315dc8c25/WebContent/client/src/assets/js/boot-public.js#L47){:target="_blank"}.
 * Starts the cascading of triggering because the main class has other dependencies
     * cascade of define() triggers
 
-```
-require(['main'], function(app) {
-	// app started
-})
-```
+[gist:id=8fe285cd5ba07a0d866058a9990254e6]
 
 #### **conifg()**
 
-* Let's you define location to sources and packages and also define aliases.  [See here for example](https://github.com/gwnio/Xcbl/blob/master/WebContent/client/src/assets/js/boot-app.js){:target="_blank"}.
+* Let's you define location to sources and packages and also define aliases.  [See here for example](https://github.com/gwnio/rg-archetype-j2ee-angularjs/blob/62336a6e6a6c4f8e234f6e52e8c07da315dc8c25/WebContent/client/src/assets/js/boot-public.js#L24){:target="_blank"}.
 
 ### Use RequireJS with Angular [11:21](https://www.youtube.com/watch?v=4yulGISBF8w#t=11m21s){:target="_blank"}
 
 * Wrap all your code with define[], this is not tedious because you are defining a contract of imports that that class requires, or dependencies it needs
     * Think of import statements in Java
-* Use require() to launch code to initialize Angular app.  [See here for example](https://github.com/gwnio/Xcbl/blob/master/WebContent/client/src/assets/js/boot-prod-app-secure.js){:target="_blank"}.
+* Use require() to launch code to initialize Angular app.  [See here for example](https://github.com/gwnio/rg-archetype-j2ee-angularjs/blob/62336a6e6a6c4f8e234f6e52e8c07da315dc8c25/WebContent/client/src/assets/js/boot-public.js#L47){:target="_blank"}.
 * **REMEMBER** RequireJS injects functions or classes, Angular injects instances of classes
-* So RequireJS can define a function that gets used in the body of a Angular function i.e. ViewController.  [See here for another example](https://github.com/gwnio/Xcbl/blob/master/WebContent/client/src/app/gu/dashboard/bill/BillCreateModule.js){:target="_blank"}.
+* So RequireJS can define a function that gets used in the body of a Angular function i.e. ViewController.  [See here for another example](https://github.com/gwnio/rg-archetype-j2ee-angularjs/blob/master/WebContent/client/src/app/public/login/LoginController.js){:target="_blank"}.
 * The below snippet of code is referred to as a constructor array.
 
-<div class="wordwrap" markdown=1>
-```
-return ["http", "q", function(http, q) {}]
-```
-</div>
+```return ["http", "q", function(http, q) {}]```
 
 ### Grunt [14:20](https://www.youtube.com/watch?v=4yulGISBF8w#t=14m20s){:target="_blank"}
