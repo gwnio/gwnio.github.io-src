@@ -96,3 +96,5 @@ Angular | construction and module dependencies
 ```return ["http", "q", function(http, q) {}]```
 
 ### Grunt [14:20](https://www.youtube.com/watch?v=4yulGISBF8w#t=14m20s){:target="_blank"}
+
+* [See here]([utilizes](https://github.com/gwnio/rg-archetype-j2ee-angularjs/tree/master/WebContent/client/build){:target="_blank"} for a example of the starter project's Grunt configuration.

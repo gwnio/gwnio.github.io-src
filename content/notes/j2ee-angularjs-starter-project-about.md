@@ -21,4 +21,6 @@ Briefly about the application:
 
 * The app also has pretty url handling; meaning the login screen can be accessed by specifying ```{app context}/login```, the signup screen can be accessed through the address ```{app context}/signup``` and the app via ```{app context}/app```.  This is possible through a OSS called [rewrite](http://www.ocpsoft.org/rewrite){:target="_blank}.
 
+* It also [utilizes](https://github.com/gwnio/rg-archetype-j2ee-angularjs/tree/master/WebContent/client/build){:target="_blank"} [Grunt](https://gruntjs.com/){:target="_blank"} to build a production ready distributable app.
+
 Follow other writings on this project [here](/tag/rg-archetype-j2ee-angularjs).
