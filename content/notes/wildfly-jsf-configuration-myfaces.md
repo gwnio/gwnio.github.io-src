@@ -14,7 +14,7 @@ The following is documentation for adding Mojarra or MyFaces JSF implementation 
 <!-- PELICAN_END_SUMMARY -->
 The below is taken verbatim from the [jboss documentation](https://docs.jboss.org/author/display/WFLY10/JSF+Configuration){:target="_blank"} and is authored by Farah Juma.  This person did an incredible job.  The instructions were detailed so well that following it to the script resulted in getting the Apache MyFaces implementation installed as a subsystem in Wildfly without any deviation.  Documentation of that quality is rare so I wanted to have this documentation in case they ever removed this page.
 
-See the following [jsf starter project](https://github.com/gwnio/rg-archetype-j2ee-myfaces) with a myfaces implementation.
+See the following [jsf starter project](https://github.com/rossgodwin/rg-archetype-j2ee-myfaces) with a myfaces implementation.
 
 ### Installing a new JSF implementation manually <a name="install_implementation"></a>
 

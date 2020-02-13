@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 # Site information
 AUTHOR = 'Rg'
-SITENAME = '@gwnio'
+SITENAME = '@rossgodwin'
 DOMAIN = 'localhost:8000'
 SITEURL = 'http://' + DOMAIN
 SITE_DESCRIPTION = 'Just documenting some things as I encounter'
@@ -32,7 +32,7 @@ AUTHOR_FEED_RSS = None
 
 # Social
 TWITTER_USERNAME = ''
-GITHUD_ID = 'gwnio'
+GITHUD_ID = 'rossgodwin'
 INSTAGRAM = ''
 
 SOCIAL = {'Twitter': 'https://twitter.com/' + TWITTER_USERNAME,
@@ -69,7 +69,7 @@ ARCHIVES_SAVE_AS = 'archives/index.html'
 DISQUS_SITENAME = ''
 GOOGLE_ANALYTICS = ''
 
-PLUGIN_PATHS = ["plugins", "../../../../../tools/Python36/Lib/site-packages"]
+PLUGIN_PATHS = ["plugins", "~/virtualenvs/pelican/lib/python3.7/site-packages"]
 PLUGINS = ["summary", "pelican_gist"]
 
 OUTPUT_PATH = 'output/local'

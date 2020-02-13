@@ -11,7 +11,7 @@
 
 ## Url
 
-https://gwnio.github.io
+https://rossgodwin.github.io/v1.rossgodwin.com
 
 ## Required Pelican Plugins
 
