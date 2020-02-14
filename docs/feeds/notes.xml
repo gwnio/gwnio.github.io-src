@@ -1,0 +1,1538 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>@rossgodwin - notes</title><link href="http://rossgodwin.github.io/v1.rossgodwin.com-src/" rel="alternate"></link><link href="http://rossgodwin.github.io/v1.rossgodwin.com-src/feeds/notes.xml" rel="self"></link><id>http://rossgodwin.github.io/v1.rossgodwin.com-src/</id><updated>2018-01-25T09:48:23-04:00</updated><entry><title>Dialogflow Java SDK</title><link href="http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2018/dialogflow-java-sdk.html" rel="alternate"></link><published>2018-01-25T09:48:23-04:00</published><updated>2018-01-25T09:48:23-04:00</updated><author><name>Rg</name></author><id>tag:rossgodwin.github.io,2018-01-25:/v1.rossgodwin.com-src/blog/2018/dialogflow-java-sdk.html</id><summary type="html">&lt;p&gt;Download the &lt;a href="https://github.com/dialogflow/dialogflow-java-client" target="_blank"&gt;java source code&lt;/a&gt; into &lt;code&gt;{source root}&lt;/code&gt;.
+&lt;/p&gt;</summary><content type="html">&lt;p&gt;Download the &lt;a href="https://github.com/dialogflow/dialogflow-java-client" target="_blank"&gt;java source code&lt;/a&gt; into &lt;code&gt;{source root}&lt;/code&gt;.
+&lt;/p&gt;
+&lt;p&gt;On Windows, open a command line window and set the &lt;code&gt;JAVA_HOME&lt;/code&gt; environment variable if need be i.e. &lt;code&gt;set JAVA_HOME="C:\dev\Java\jdk1.8.0_77"&lt;/code&gt;.  Change directories to the &lt;code&gt;{source root}&lt;/code&gt; folder and package the source via the maven command, &lt;code&gt;mvn -X package&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Include the following jar files in the project class path in order to create a Dialogflow webhook.  &lt;code&gt;{source root}\libai\target\libai.jar&lt;/code&gt; and &lt;code&gt;{source root}\web\servlet\target\libai-web-servlet-X.X.X.jar&lt;/code&gt;.&lt;/p&gt;</content><category term="notes"></category><category term="dialogflow"></category></entry><entry><title>AngularJS Grunt Production Build</title><link href="http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2018/angularjs-grunt-production-build.html" rel="alternate"></link><published>2018-01-18T09:48:23-04:00</published><updated>2018-01-18T09:48:23-04:00</updated><author><name>Rg</name></author><id>tag:rossgodwin.github.io,2018-01-18:/v1.rossgodwin.com-src/blog/2018/angularjs-grunt-production-build.html</id><summary type="html">&lt;p&gt;I created a project on github called &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs" target="_blank"&gt;rg-archetype-j2ee-angularjs&lt;/a&gt;.  This project utilizes Grunt to construct a production ready AngularJS client app, meaning the source code is minimized and obfuscated for faster download and thus better user experience.
+&lt;/p&gt;</summary><content type="html">&lt;p&gt;I created a project on github called &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs" target="_blank"&gt;rg-archetype-j2ee-angularjs&lt;/a&gt;.  This project utilizes Grunt to construct a production ready AngularJS client app, meaning the source code is minimized and obfuscated for faster download and thus better user experience.
+&lt;/p&gt;
+&lt;p&gt;To learn more about the Grunt configuration for this project, find the Grunt task &lt;code&gt;build-app&lt;/code&gt; in the &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/blob/master/WebContent/client/build/Gruntfile.js" target="_blank"&gt;configuration file&lt;/a&gt; and inspect each dependency task.&lt;/p&gt;
+&lt;p&gt;A couple of things to take note of:&lt;/p&gt;
+&lt;h2&gt;Entry Point&lt;/h2&gt;
+&lt;p&gt;Each entry point file (&lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/blob/master/WebContent/client/src/index-app-public.tpl.jsp" target="_blank"&gt;public&lt;/a&gt; and &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/blob/master/WebContent/client/src/index-app-secure.tpl.jsp" target="_blank"&gt;secure&lt;/a&gt;) has a template file associated with it.  This was to facilitate generating a development index file, to be used in development mode, and a production index file for production deployments.  &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/blob/master/WebContent/client/build/Gruntfile.js" target="_blank"&gt;The Grunt configuration&lt;/a&gt; has a &lt;code&gt;preprocess&lt;/code&gt; configuration point, for development and production, to generate the index entry point from the template index entry point.&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/0dc4c027aeb67bab75de4e44f75d53ee.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;preprocess : {
+	dev : {
+		files : [ {
+			src : '../src/index-app-public.tpl.jsp',
+			dest : '../src/index-app-public.jsp'
+		}, {
+			src : '../src/index-app-secure.tpl.jsp',
+			dest : '../src/index-app-secure.jsp'
+		} ]
+	},
+
+	prod : {
+		files : [ {
+			src : '../src/index-app-public.tpl.jsp',
+			dest : '&lt;%= dist_dir %&gt;/index-app-public.jsp'
+		}, {
+			src : '../src/index-app-secure.tpl.jsp',
+			dest : '&lt;%= dist_dir %&gt;/index-app-secure.jsp'
+		} ]
+	}
+}&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;h2&gt;Boot file&lt;/h2&gt;
+&lt;p&gt;Under &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/tree/master/WebContent/client/src/assets/js" target="_blank"&gt;&lt;code&gt;WebContent\client\src\assets\js&lt;/code&gt;&lt;/a&gt; are the boot files.  Notice the files prefixed with &lt;code&gt;prod-&lt;/code&gt;, these files contain a references to the concatenated and minified application javascript file.  This compressed file contains all vendor and custom developed source code for the application.  Contrast this with the non prefixed boot files for comparison.  When Grunt performs a production build, the &lt;code&gt;prod-&lt;/code&gt; file gets copied into the &lt;code&gt;compile&lt;/code&gt; build folder and then ultimately copied to the &lt;code&gt;dist&lt;/code&gt; folder to where the &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/blob/16d2ea24a5907219828ed04701b124eaa35f9c21/WebContent/client/src/index-app-public.tpl.jsp#L41" target="_blank"&gt;index entry point file&lt;/a&gt; will be looking for it.  Below is a snippet of the Grunt configuration point that generates the boot file in the &lt;code&gt;dist&lt;/code&gt; location.&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/e338159094ee4aecfae04dd0fb6bf06d.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;dist_prod_app_public : {
+	files : [ {
+		src : '&lt;%= compile_dir %&gt;/src/assets/js/prod-boot-public.js',
+		dest : '&lt;%= dist_dir %&gt;/assets/js/boot-public.js'
+	} ]
+}&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;h2&gt;Mode: Development/Production&lt;/h2&gt;
+&lt;p&gt;To toggle between development and production mode, change the environment type value in &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/blob/master/src/org/rg/archetype/web/servlet/AppServletContextListener.java" target="_blank"&gt;&lt;code&gt;AppServletContextListener&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Notice the difference in the network traffic for the login page between &lt;a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/images/blog/j2ee-angularjs-starter-project-grunt/development-network.png" target="_blank"&gt;development mode&lt;/a&gt; and &lt;a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/images/blog/j2ee-angularjs-starter-project-grunt/production-network.png" target="_blank"&gt;production mode&lt;/a&gt;.  Keep in mind that in development mode, requirejs is only downloading modules and partial templates as needed.  The download size of the login page in development mode is 498KB.  In production mode, that size is down to 361KB however that size includes the entire single page application so in this case the login page as well as the sign up page.  This is well over a 40% reduction in size.  This can be accounted for by minification performed by the grunt task &lt;code&gt;uglify&lt;/code&gt;.  Further notice how in &lt;a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/images/blog/j2ee-angularjs-starter-project-grunt/development-console.png" target="_blank"&gt;development mode&lt;/a&gt; the partial templates are downloaded as they are needed, whereas in &lt;a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/images/blog/j2ee-angularjs-starter-project-grunt/production-console.png" target="_blank"&gt;production mode&lt;/a&gt; there are no partial templates downloaded because they are packaged into javascript code.&lt;/p&gt;
+&lt;h2&gt;Build&lt;/h2&gt;
+&lt;p&gt;Here are instructions on how to build the release application:&lt;/p&gt;
+&lt;h3&gt;Step 1&lt;/h3&gt;
+&lt;p&gt;Install &lt;a href="https://docs.npmjs.com/cli/install" target="_blank"&gt;npm&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Step 2&lt;/h3&gt;
+&lt;p&gt;Change to the following directory, &lt;code&gt;{project root}\WebContent\client\build&lt;/code&gt; and execute the following command: &lt;code&gt;npm install&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This will download the dependency modules into &lt;code&gt;{project root}\WebContent\client\build\node_modules&lt;/code&gt;, including &lt;a href="https://gruntjs.com" target="_blank"&gt;Grunt&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Step 3&lt;/h3&gt;
+&lt;p&gt;Execute the primary grunt task to create the production ready angularjs application &lt;code&gt;grunt build-app&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This will generate the following folders under &lt;code&gt;{project root}\WebContent\client&lt;/code&gt;: &lt;code&gt;compile&lt;/code&gt; and &lt;code&gt;dist&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;Step 4&lt;/h3&gt;
+&lt;p&gt;Execute a clean &lt;code&gt;grunt prod-clean&lt;/code&gt; to remove everything but the release directory &lt;code&gt;dist&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Follow other writings on this project &lt;a href="/tag/rg-archetype-j2ee-angularjs"&gt;here&lt;/a&gt;.&lt;/p&gt;</content><category term="notes"></category><category term="rg-archetype-j2ee-angularjs"></category><category term="angularjs"></category><category term="grunt"></category></entry><entry><title>AngularJS Splash Screen</title><link href="http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2018/angularjs-splash-screen.html" rel="alternate"></link><published>2018-01-17T09:48:23-04:00</published><updated>2018-01-17T09:48:23-04:00</updated><author><name>Rg</name></author><id>tag:rossgodwin.github.io,2018-01-17:/v1.rossgodwin.com-src/blog/2018/angularjs-splash-screen.html</id><summary type="html">&lt;p&gt;The following is a explanation of how to create a splash screen for a AngularJS client, with references to example code from a &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs" target="_blank"&gt;J2EE AngularJS starter project&lt;/a&gt; I created.
+&lt;/p&gt;</summary><content type="html">&lt;p&gt;The following is a explanation of how to create a splash screen for a AngularJS client, with references to example code from a &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs" target="_blank"&gt;J2EE AngularJS starter project&lt;/a&gt; I created.
+&lt;/p&gt;
+&lt;p&gt;The first thing I did was to define the html/css content for the splash screen content in the &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/blob/master/WebContent/client/src/index-app-secure.jsp" target="_blank"&gt;entry point index page&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/2b51dd400db9a8bbf881324a80b91aca.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;&lt;div id="splash" class="splash" ng-animate-children&gt;
+	&lt;style type="text/css"&gt;
+		div.splash {
+			color: #FFFFFF;
+			position: absolute;
+			top: 50%;
+			transform: translate(0, -50%);
+			left: 0;
+			right: 0;
+		}
+	&lt;/style&gt;
+	&lt;img src="client/assets/img/splash.jpg" class="img-responsive" style="display: block; margin-left: auto; margin-right: auto;"&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;p&gt;This div tag contains the image element referencing the splash image and also contains inline css styling.  This splash display will be the only thing the user sees until the &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; element is removed.  The div element can be removed when the app is bootstrapped and the module gets built and run.  &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/blob/master/WebContent/client/src/app/app-secure.js" target="_blank"&gt;See here&lt;/a&gt; for a example of this.&lt;/p&gt;
+&lt;p&gt;Notice a couple of things:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;I let the splash screen &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/blob/62336a6e6a6c4f8e234f6e52e8c07da315dc8c25/WebContent/client/src/app/app-secure.js#L27" target="_blank"&gt;display for a couple of seconds&lt;/a&gt; before bootstrapping the app.  This is certainly optional, but let's the user absorb your nice logo briefly.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;function removeSplash()&lt;/code&gt; removes the splash html element containing the splash content.  This gets invoked when the main module is run &lt;code&gt;module.run()&lt;/code&gt; but &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/blob/62336a6e6a6c4f8e234f6e52e8c07da315dc8c25/WebContent/client/src/app/app-secure.js#L23" target="_blank"&gt;after the initial route state is called&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Follow other writings on this project &lt;a href="/tag/rg-archetype-j2ee-angularjs"&gt;here&lt;/a&gt;.&lt;/p&gt;</content><category term="notes"></category><category term="rg-archetype-j2ee-angularjs"></category><category term="angularjs"></category><category term="splash screen"></category></entry><entry><title>AngularJS Starter Project Bootstrap</title><link href="http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2018/angularjs-starter-project-bootstrap.html" rel="alternate"></link><published>2018-01-17T09:48:23-04:00</published><updated>2018-01-17T09:48:23-04:00</updated><author><name>Rg</name></author><id>tag:rossgodwin.github.io,2018-01-17:/v1.rossgodwin.com-src/blog/2018/angularjs-starter-project-bootstrap.html</id><summary type="html">&lt;p&gt;I created a project on github called &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs" target="_blank"&gt;rg-archetype-j2ee-angularjs&lt;/a&gt;.  The following is a explanation about how this AngularJS app starts up.  This starter project is essentially two single page applications, one for portions of the sight that do not require login credentials (i.e. public) and the remainder for parts that does require a login (i.e. secure).  In this project, there are three main components to the AngularJS application loading: the entry point, boot file and main module file. 
+&lt;/p&gt;</summary><content type="html">&lt;p&gt;I created a project on github called &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs" target="_blank"&gt;rg-archetype-j2ee-angularjs&lt;/a&gt;.  The following is a explanation about how this AngularJS app starts up.  This starter project is essentially two single page applications, one for portions of the sight that do not require login credentials (i.e. public) and the remainder for parts that does require a login (i.e. secure).  In this project, there are three main components to the AngularJS application loading: the entry point, boot file and main module file. 
+&lt;/p&gt;
+&lt;h2&gt;Entry point &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/blob/master/WebContent/client/src/index-app-public.jsp" target="_blank"&gt;&lt;code&gt;index-app-public.jsp&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This file contains the root element on which the application will be "bound", &lt;code&gt;&amp;lt;div ui-view&amp;gt;&lt;/code&gt;, and a reference to the javascript boot file, &lt;code&gt;boot-public.js&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Boot file &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/blob/master/WebContent/client/src/assets/js/boot-public.js" target="_blank"&gt;&lt;code&gt;boot-public.js&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The boot file uses &lt;a href="http://requirejs.org" target="_blank"&gt;requirejs&lt;/a&gt; to perform all the dependency resolving and loading, which is triggered by a call to &lt;code&gt;require()&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Main module &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/blob/master/WebContent/client/src/app/app-public.js" target="_blank"&gt;&lt;code&gt;app-public.js&lt;/code&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The main module file contains the angular code to build the main module and submodules and then bootstrap, or start, the application by invoking &lt;a href="https://docs.angularjs.org/api/ng/function/angular.bootstrap" target="_blank"&gt;&lt;code&gt;angular.bootstrap()&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Follow other writings on this project &lt;a href="/tag/rg-archetype-j2ee-angularjs"&gt;here&lt;/a&gt;.&lt;/p&gt;</content><category term="notes"></category><category term="rg-archetype-j2ee-angularjs"></category><category term="angularjs"></category><category term="requirejs"></category></entry><entry><title>AngularJS Nice Urls</title><link href="http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2018/angularjs-nice-urls.html" rel="alternate"></link><published>2018-01-14T09:48:23-04:00</published><updated>2018-01-14T09:48:23-04:00</updated><author><name>Rg</name></author><id>tag:rossgodwin.github.io,2018-01-14:/v1.rossgodwin.com-src/blog/2018/angularjs-nice-urls.html</id><summary type="html">&lt;p&gt;I created a project on github called &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs" target="_blank"&gt;rg-archetype-j2ee-angularjs&lt;/a&gt;.  This project can be thought of as being two single page applications, a public domain module (i.e. login, signup, forget password screens, etc.) and a secure domain module containing functionality requiring login credentials.  I did this for faster loading of the login and signup screens, hopefully making for a slightly better user experience.  Also logically, I just like to think of this app as two single page applications.  This can easily be converted to one single page application if desired.  Each main domain module has their own index page, one for &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/blob/master/WebContent/client/src/index-app-public.jsp" target="_blank"&gt;public&lt;/a&gt; and another for &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/blob/master/WebContent/client/src/index-app-secure.jsp" target="_blank"&gt;secure&lt;/a&gt;.
+&lt;/p&gt;</summary><content type="html">&lt;p&gt;I created a project on github called &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs" target="_blank"&gt;rg-archetype-j2ee-angularjs&lt;/a&gt;.  This project can be thought of as being two single page applications, a public domain module (i.e. login, signup, forget password screens, etc.) and a secure domain module containing functionality requiring login credentials.  I did this for faster loading of the login and signup screens, hopefully making for a slightly better user experience.  Also logically, I just like to think of this app as two single page applications.  This can easily be converted to one single page application if desired.  Each main domain module has their own index page, one for &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/blob/master/WebContent/client/src/index-app-public.jsp" target="_blank"&gt;public&lt;/a&gt; and another for &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/blob/master/WebContent/client/src/index-app-secure.jsp" target="_blank"&gt;secure&lt;/a&gt;.
+&lt;/p&gt;
+&lt;p&gt;Because this project's index pages are jsps, the context path from the &lt;code&gt;javax.servlet.http.HttpServletRequest&lt;/code&gt; object is used to set the &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/blob/62336a6e6a6c4f8e234f6e52e8c07da315dc8c25/WebContent/client/src/index-app-public.jsp#L6" target="&amp;quot;_blank"&gt;&lt;code&gt;&amp;lt;base href=".../"&amp;gt;&lt;/code&gt;&lt;/a&gt; for relative links:&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/7ad8a23a0b394e312e70ad619710d0f4.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;&lt;base href="&lt;%= request.getContextPath() %&gt;/"&gt;&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;p&gt;Each of these applications uses &lt;a href="https://docs.angularjs.org/guide/$location#html5-mode" target="_blank"&gt;HTML5 mode&lt;/a&gt;.  Note that this application does not handle HTML5 fallback mode, hashbang mode.  Each of the single page application's main modules are configured to use HTML5 mode, here is the &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/blob/62336a6e6a6c4f8e234f6e52e8c07da315dc8c25/WebContent/client/src/app/app-public.js#L13" target="_blank"&gt;public module&lt;/a&gt; with the configuration and here is the &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/blob/62336a6e6a6c4f8e234f6e52e8c07da315dc8c25/WebContent/client/src/app/app-secure.js#L13" target="_blank"&gt;secure module&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/2a8cc7761ae041940b5c609665bee22d.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;module.config(['$locationProvider', function($locationProvider) {
+	$locationProvider.html5Mode(true);
+}]);&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;p&gt;In order to perform &lt;a href="https://docs.angularjs.org/guide/$location#server-side" target="_blank"&gt;server-side url rewriting&lt;/a&gt;, I used a open source url rewriting micro libary called &lt;a href="https://www.ocpsoft.org/rewrite" target="_blank"&gt;rewrite&lt;/a&gt;.  When thinking of rewrite versus redirect, a rewrite happens on the server so that the client browser is never aware.  Whereas a redirect is a response from the server to the client, the client's url is updated and then another request is made for the new url.  The instructions on how to include rewrite in your project is simple, but below is this project's implementation of the &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/blob/master/src/org/rg/archetype/web/UrlRewriteConfigurationProvider.java" target="_blank"&gt;rewrite configuration provider&lt;/a&gt;.  Notice how urls not requiring login credentials get forwarded to the angular public entry point and the urls requiring login get forwarded to the secure entry point:&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/e844781ce8987d43f588df40faa229d4.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;@RewriteConfiguration
+public class UrlRewriteConfigurationProvider extends HttpConfigurationProvider {
+	
+	@Override
+	public Configuration getConfiguration(final ServletContext context) {
+		/**
+		 * Urls that do not require a authenticated user
+		 */
+		final List&lt;String&gt; publicUrls = new ArrayList&lt;String&gt;();
+		publicUrls.add("/login");
+		publicUrls.add("/signup");
+		
+		/**
+		 * Urls that require a authenticated user
+		 */
+		final List&lt;String&gt; secureUrls = new ArrayList&lt;String&gt;();
+		secureUrls.add("/" + AppUris.ROOT_PATH_NAME);
+		
+		/**
+		 * Angular app entry points
+		 */
+		String appPublicEp = "/client/src/index-app-public.jsp";
+		String appSecureEp = "/client/src/index-app-secure.jsp";
+		
+		ConfigurationBuilder cfgBldr = ConfigurationBuilder.begin();
+		for (String publicUrl : publicUrls) {
+			cfgBldr.addRule().when(Direction.isInbound().and(Path.matches(publicUrl))).perform((Forward.to(appPublicEp)));
+		}
+		for (String secureUrl : secureUrls) {
+			cfgBldr.addRule().when(Direction.isInbound().and(Path.matches(secureUrl))).perform((Forward.to(appSecureEp)));
+		}
+		
+		return cfgBldr;
+	}
+
+	@Override
+	public int priority() {
+		/* This provides ordering if you have multiple configurations */
+		return 10;
+	}
+}&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;p&gt;Lastly, this project uses &lt;a href="https://github.com/angular-ui/ui-router" target="_blank"&gt;ui-router&lt;/a&gt; so here is the public single page app's &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/blob/62336a6e6a6c4f8e234f6e52e8c07da315dc8c25/WebContent/client/src/app/public/MainModule.js#L29" target="_blank"&gt;route configuration&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/dcfc29df2bc4bd7293934c9db9a09f4b.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;module.config(['$stateProvider', function($stateProvider) {
+	$stateProvider
+	.state('app', {
+		abstract : true,
+		templateUrl : 'client/src/app/public/app-public.tpl.html',
+		controller : 'PublicMainController',
+		controllerAs : 'ctrlr'
+	})
+	.state('app.login', {
+		url : '/login?go',
+		templateUrl : 'client/src/app/public/login/login.tpl.html',
+		controller : 'LoginController',
+		controllerAs : 'ctrlr'
+	})
+	.state('app.signup', {
+		url : '/signup',
+		templateUrl : 'client/src/app/public/qsignup/signup.tpl.html',
+		controller : 'SignupController',
+		controllerAs : 'ctrlr'
+	});
+}]);&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;p&gt;Follow other writings on this project &lt;a href="/tag/rg-archetype-j2ee-angularjs"&gt;here&lt;/a&gt;.&lt;/p&gt;</content><category term="notes"></category><category term="rg-archetype-j2ee-angularjs"></category><category term="angularjs"></category><category term="ui-router"></category><category term="rewrite"></category></entry><entry><title>About J2EE AngularJS Starter Project</title><link href="http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2018/about-j2ee-angularjs-starter-project.html" rel="alternate"></link><published>2018-01-13T09:48:23-04:00</published><updated>2018-01-13T09:48:23-04:00</updated><author><name>Rg</name></author><id>tag:rossgodwin.github.io,2018-01-13:/v1.rossgodwin.com-src/blog/2018/about-j2ee-angularjs-starter-project.html</id><summary type="html">&lt;p&gt;I created a project on github called &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs" target="_blank"&gt;rg-archetype-j2ee-angularjs&lt;/a&gt;.  This is a J2EE project with a AngularJS front end that is intended to be a starter kit for someone interested in creating a AngularJS single page application.  This project, out of the box, comes with a fully functional login screen, signup screen and basic dashboard screen.&lt;br/&gt;
+&lt;/p&gt;</summary><content type="html">&lt;p&gt;I created a project on github called &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs" target="_blank"&gt;rg-archetype-j2ee-angularjs&lt;/a&gt;.  This is a J2EE project with a AngularJS front end that is intended to be a starter kit for someone interested in creating a AngularJS single page application.  This project, out of the box, comes with a fully functional login screen, signup screen and basic dashboard screen.&lt;br&gt;
+&lt;/p&gt;
+&lt;p&gt;Briefly about the application:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Its based on AngularJS 1.5.8&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;It applies bootstrap 3.3.6 styling&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;It uses &lt;a href="https://github.com/angular-ui/ui-router" target="_blank"&gt;ui-router 0.3.1&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;All vendor related source code used can be found under &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/tree/master/WebContent/client/vendor" target="_blank"&gt;WebContent\client\vendor&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The client side single page app is segregated into two parts: a public app, which contains the login and signup screens, and a secure app, like the dashboard screen.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;It uses &lt;a href="http://requirejs.org" target="_blank"&gt;requirejs&lt;/a&gt;, a modular script loader, and &lt;a href="http://headjs.com" target="_blank"&gt;headjs&lt;/a&gt;.  For more on requirejs, &lt;a href="/blog/2017/ng-conf-thomas-burleson-angular-and-requirejs-talk-notes.html"&gt;see here&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The app also has pretty url handling; meaning the login screen can be accessed by specifying &lt;code&gt;{app context}/login&lt;/code&gt;, the signup screen can be accessed through the address &lt;code&gt;{app context}/signup&lt;/code&gt; and the app via &lt;code&gt;{app context}/app&lt;/code&gt;.  This is possible through a OSS called &lt;a href="http://www.ocpsoft.org/rewrite" target="&amp;quot;_blank"&gt;rewrite&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;It also &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/tree/master/WebContent/client/build" target="_blank"&gt;utilizes&lt;/a&gt; &lt;a href="https://gruntjs.com/" target="_blank"&gt;Grunt&lt;/a&gt; to build a production ready distributable app.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Follow other writings on this project &lt;a href="/tag/rg-archetype-j2ee-angularjs"&gt;here&lt;/a&gt;.&lt;/p&gt;</content><category term="notes"></category><category term="rg-archetype-j2ee-angularjs"></category><category term="wildfly"></category><category term="angularjs"></category><category term="ui-router"></category><category term="requirejs"></category><category term="headjs"></category><category term="bootstrap"></category></entry><entry><title>Configure Apache to Forward some Url Reqests to Wildfly</title><link href="http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2018/configure-apache-to-forward-some-url-reqests-to-wildfly.html" rel="alternate"></link><published>2018-01-03T09:48:23-04:00</published><updated>2018-01-03T09:48:23-04:00</updated><author><name>Rg</name></author><id>tag:rossgodwin.github.io,2018-01-03:/v1.rossgodwin.com-src/blog/2018/configure-apache-to-forward-some-url-reqests-to-wildfly.html</id><summary type="html">&lt;p&gt;I created a website (&lt;a href="https://www.cheapthycable.com" target="_blank"&gt;CheapThyCable.com&lt;/a&gt;) that is composed of a static blog and a JavaEE application.  Originally I developed it so that all content was served out by the application server whose content was comprised from a war file.
+&lt;/p&gt;</summary><content type="html">&lt;p&gt;I created a website (&lt;a href="https://www.cheapthycable.com" target="_blank"&gt;CheapThyCable.com&lt;/a&gt;) that is composed of a static blog and a JavaEE application.  Originally I developed it so that all content was served out by the application server whose content was comprised from a war file.
+&lt;/p&gt;
+&lt;p&gt;&lt;img src="../../images/blog/configure-apache-to-forward-some-url-requests-to-wildfly/arrows-1738067_1280_350.jpg" alt="Configure Apache to Forward some Url Reqests to Wildfly" class="image-responsive image-center" markdown=1&gt;&lt;/p&gt;
+&lt;p&gt;When I originally built the project, I wanted everything to be contained in my war file, both dynamic content and static content.  A couple of things I have since discovered I don't like about this are 1) any blogs I add requires a war file deployment which is much slower than just doing a apache restart, 2) I didn't like the effect this had on my version control.  For me, it was difficult to determine when a good time to perform a tag on the source code should occur, since things were constantly changing with the blog.&lt;/p&gt;
+&lt;p&gt;So I decided that I wanted to separate the content of my website and particularly what served out that content.  The site's blog is generated by the static site generator Pelican and all this content I wanted to be served out by the Apache web server.  All other content, namely the application, would be handle by my Wildfly application server.  Below is a brief snippet from my httpd.conf file, showing how I forwarded certain application related url patterns to the application server.&lt;/p&gt;
+&lt;p&gt;A couple of quick notes.  Under my htdocs folder, I created a subfolder &lt;code&gt;cheapthycable.com&lt;/code&gt; containing the static content served out by Apache.  My application server is listening on port 8080, so by specifying the port I can forward request on to the application server.  Also notice the use of ProxyPassReverse.  You may ask, "do I need the ProxyPassReverse".  The documentation recommends it.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The reverse proxy then decides where to send those requests and returns the content as if it were itself the origin.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;and&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note that whether you use RewriteRule or ProxyPass, you'll still need to use the ProxyPassReverse directive to catch redirects issued from the back-end server:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I won't include all the app related urls that need to be forwarded, but a couple are &lt;code&gt;/login&lt;/code&gt; and &lt;code&gt;/app&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/ea226d39d967d5d33d49fdd1ea9ba71b.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;&lt;VirtualHost *:80&gt;
+	DocumentRoot "htdocs/cheapthycable.com"
+	ServerName cheapthycable.com
+	ErrorLog "logs/cheapthycable.com/error.log"
+	CustomLog "logs/cheapthycable.com/access.log" common
+	
+	ProxyPass "/login" "http://localhost:8080/login"
+	ProxyPassReverse "/login" "http://localhost:8080/login"
+	
+	ProxyPass "/app" "http://localhost:8080/app"
+	ProxyPassReverse "/app" "http://localhost:8080/app"
+&lt;/VirtualHost&gt;&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;p&gt;This is a just a snippet of my base configuration, but should give you a basic idea.&lt;/p&gt;</content><category term="notes"></category><category term="apache"></category><category term="httpd"></category><category term="mod_proxy"></category><category term="wildfly"></category></entry><entry><title>Configure Apache to Host Multiple Sites</title><link href="http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2018/configure-apache-to-host-multiple-sites.html" rel="alternate"></link><published>2018-01-02T09:48:23-04:00</published><updated>2018-01-02T09:48:23-04:00</updated><author><name>Rg</name></author><id>tag:rossgodwin.github.io,2018-01-02:/v1.rossgodwin.com-src/blog/2018/configure-apache-to-host-multiple-sites.html</id><summary type="html">&lt;p&gt;This provides a brief explanation on how to configure your apache server to host multiple web sites.
+&lt;/p&gt;</summary><content type="html">&lt;p&gt;This provides a brief explanation on how to configure your apache server to host multiple web sites.
+&lt;/p&gt;
+&lt;p&gt;First thing I did was under &lt;code&gt;{apache home}/conf&lt;/code&gt; I created a custom httpd conf file named &lt;code&gt;my-httpd.conf&lt;/code&gt;.  I did this to keep my custom changes separate from Apache's out-of-the-box configuration.  To use this configuration, at the bottom of &lt;code&gt;{apache home}/conf/httpd.conf&lt;/code&gt; add the following line &lt;code&gt;Include conf/my-httpd.conf&lt;/code&gt;.  In this custom configuration, add a virtual host for each domain apache will be serving content for.&lt;/p&gt;
+&lt;p&gt;So let's say you have the following 2 domains: &lt;strong&gt;www.mypersonalsite.com&lt;/strong&gt; and &lt;strong&gt;&lt;a href="https://www.cheapthycable.com" target="_blank"&gt;www.cheapthycable.com&lt;/a&gt;&lt;/strong&gt;.  Under &lt;code&gt;{apache home}/htdocs&lt;/code&gt;, create a separate folder for each domain, &lt;code&gt;{apache home}/htdocs/mypersonalsite.com&lt;/code&gt; and &lt;code&gt;{apache home}/htdocs/cheapthycable.com&lt;/code&gt;.  I would recommend doing the same in the logs directory, &lt;code&gt;{apache home}/logs/mypersonalsite.com&lt;/code&gt; and &lt;code&gt;{apache home}/logs/cheapthycable.com&lt;/code&gt;.  Then the &lt;code&gt;my-httpd.conf&lt;/code&gt; would look as follows:&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/d9616fca9447078e426dfb0debb6643d.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;&lt;VirtualHost *:80&gt;
+	DocumentRoot "htdocs/mypersonalsite.com"
+	ServerName www.mypersonalsite.com
+	ErrorLog "logs/mypersonalsite.com/error.log"
+	CustomLog "logs/mypersonalsite.com/access.log" common
+&lt;/VirtualHost&gt;
+&lt;VirtualHost *:80&gt;
+	DocumentRoot "htdocs/cheapthycable.com"
+	ServerName www.cheapthycable.com
+	ErrorLog "logs/cheapthycable.com/error.log"
+	CustomLog "logs/cheapthycable.com/access.log" common
+&lt;/VirtualHost&gt;&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;p&gt;Now certainly there are other configuration adjustments that you can make but this a jump start for Apache hosting multiple sites.  One other thing I will add, is what if you are on a Windows environment and you want to test this locally?  First would be to modify your Windows host file located at &lt;code&gt;C:\Windows\System32\drivers\etc\host&lt;/code&gt;.  Find out what you local machine's ip address is and add a couple of domains like so.&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/86196a105871cfaf345d2ec0fd9f7063.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;192.168.0.178 mypersonalsite.com
+192.168.0.178 cheapthycable.com&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;p&gt;Then adjust &lt;em&gt;my-httpd.conf&lt;/em&gt; to look as follows:&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/537f647a12a1d3d5dc31a00404677859.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;&lt;VirtualHost *:80&gt;
+	DocumentRoot "htdocs/mypersonalsite.com"
+	ServerName mypersonalsite.com
+	ErrorLog "logs/mypersonalsite.com/error.log"
+	CustomLog "logs/mypersonalsite.com/access.log" common
+&lt;/VirtualHost&gt;
+&lt;VirtualHost *:80&gt;
+	DocumentRoot "htdocs/cheapthycable.com"
+	ServerName cheapthycable.com
+	ErrorLog "logs/cheapthycable.com/error.log"
+	CustomLog "logs/cheapthycable.com/access.log" common
+&lt;/VirtualHost&gt;&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;p&gt;Restart Apache and test it out.&lt;/p&gt;</content><category term="notes"></category><category term="apache"></category><category term="httpd"></category></entry><entry><title>How To Style a Markdown Table in Pelican</title><link href="http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2017/how-to-style-a-markdown-table-in-pelican.html" rel="alternate"></link><published>2017-11-17T09:48:23-04:00</published><updated>2017-11-17T09:48:23-04:00</updated><author><name>Rg</name></author><id>tag:rossgodwin.github.io,2017-11-17:/v1.rossgodwin.com-src/blog/2017/how-to-style-a-markdown-table-in-pelican.html</id><summary type="html">&lt;p&gt;This explains how to style a markdown table in the static site generator pelican.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In your style sheet define a custom class that styles a HTML table.&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/70eb1c973aca53a594e39c35a10fd320.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;.myclass table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.myclass table td,
+.myclass table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+.myclass table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;p&gt;Then in your markdown file wrap the table syntax with a HTML div tag that includes your custom css class.&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/c66cc4e9fac6ee0658372e8d8a6842d4.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;&lt;div class="myclass" markdown=1&gt;
+...
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;p&gt;Here is a example...&lt;/p&gt;
+&lt;div class="article_content_table0"&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Header 1&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;Footer&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Row 1&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Row 2&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Row 3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;p&gt;Booyah!&lt;/p&gt;</content><category term="notes"></category><category term="pelican"></category><category term="markdown"></category><category term="css"></category></entry><entry><title>Microsoft Visual SourceSafe cleanup in Windows</title><link href="http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2017/microsoft-visual-sourcesafe-cleanup-in-windows.html" rel="alternate"></link><published>2017-11-14T09:48:23-04:00</published><updated>2017-11-14T09:48:23-04:00</updated><author><name>Rg</name></author><id>tag:rossgodwin.github.io,2017-11-14:/v1.rossgodwin.com-src/blog/2017/microsoft-visual-sourcesafe-cleanup-in-windows.html</id><summary type="html">&lt;p&gt;I was migrating some old source code that was version controlled in Microsoft Visual SourceSafe (or vss) into Subversion.  I wanted to cleanup the files and subfolders in the project root.  By cleanup, I mean get rid of the vss metadata and reset the file permissions.  Vss adds a .scc file and sets all the files to read-only.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;I was migrating some old source code that was version controlled in Microsoft Visual SourceSafe (or vss) into Subversion.  I wanted to cleanup the files and subfolders in the project root.  By cleanup, I mean get rid of the vss metadata and reset the file permissions.  Vss adds a .scc file and sets all the files to read-only.&lt;/p&gt;
+
+
+&lt;p&gt;Below are a couple of Windows commands, don't forget to change to project root folder:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Remove microsoft source safe files&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;del /S *.scc&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Change all files to not be read-only&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;attrib -r .\*.* /s&lt;/code&gt;&lt;/p&gt;</content><category term="notes"></category><category term="microsoft"></category><category term="vss"></category></entry><entry><title>Ng-conf Thomas Burleson Angular and RequireJS Talk Notes</title><link href="http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2017/ng-conf-thomas-burleson-angular-and-requirejs-talk-notes.html" rel="alternate"></link><published>2017-06-14T11:10:23-04:00</published><updated>2017-06-14T11:10:23-04:00</updated><author><name>Rg</name></author><id>tag:rossgodwin.github.io,2017-06-14:/v1.rossgodwin.com-src/blog/2017/ng-conf-thomas-burleson-angular-and-requirejs-talk-notes.html</id><summary type="html">
+&lt;p&gt;The following are notes I have taking from a talk that Thomas Burleson gave at ng-conf in 2014.
+&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Intro&lt;/h2&gt;
+
+
+&lt;p&gt;The following are notes I have taking from a talk that Thomas Burleson gave at ng-conf in 2014.
+
+The talk can be found &lt;a href="https://www.youtube.com/watch?v=4yulGISBF8w" target="_blank"&gt;here&lt;/a&gt; and was very helpful with my angularjs project.  I did not attend this conference, rather I found this resource on Youtube.&lt;/p&gt;
+&lt;p&gt;In the below notes, I have also added links to examples in a &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs" target="_blank"&gt;J2EE AngularJS starter project&lt;/a&gt; I created which implements some of the concepts the speaker discusses.&lt;/p&gt;
+&lt;h3&gt;Is RequireJS needed in your Angular project? &lt;a href="https://www.youtube.com/watch?v=4yulGISBF8w#t=02m17s" target="_blank"&gt;2:17&lt;/a&gt;&lt;/h3&gt;
+&lt;h4&gt;Option 1&lt;/h4&gt;
+&lt;p&gt;Load code in one js file, this is ok for simple applications.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;angular.module().config().service().controller()&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Option 2&lt;/h4&gt;
+&lt;p&gt;Organize by packages, manually load the dependencies via imports.  You have to remember the dependencies and get the order of loading right.  This is very difficult for large projects and does not scale well.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;script src='...\sourceFile.js&amp;gt;&amp;lt;/script&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;Need: package dependency manager&lt;/h3&gt;
+&lt;p&gt;Manages which classes need to be loaded in what order.&lt;/p&gt;
+&lt;h3&gt;Dependency Types &lt;a href="https://www.youtube.com/watch?v=4yulGISBF8w#t=04m18s" target="_blank"&gt;4:18&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;load - which classes need to be loaded in what order&lt;/li&gt;
+&lt;li&gt;construction - the arguments needed to instantiate classes&lt;/li&gt;
+&lt;li&gt;runtime - functions and utilities needed post instantiation&lt;/li&gt;
+&lt;li&gt;module (angular specific) - which modules depend on other modules&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;RequireJS Features &lt;a href="https://www.youtube.com/watch?v=4yulGISBF8w#t=05m04s" target="_blank"&gt;5:04&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;package dependency manager&lt;/li&gt;
+&lt;li&gt;class injector (not to be confused with Angular instance injection)&lt;/li&gt;
+&lt;li&gt;js file loader&lt;ul&gt;
+&lt;li&gt;lazy loader of files or classes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;concatenator / uglifies&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;RequireJS vs Angular &lt;a href="https://www.youtube.com/watch?v=4yulGISBF8w#t=05m10s" target="_blank"&gt;5:10&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="article_content_table0"&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Framework&lt;/th&gt;
+&lt;th&gt;Manages&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;RequireJS&lt;/td&gt;
+&lt;td&gt;load and runtime dependencies&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Angular&lt;/td&gt;
+&lt;td&gt;construction and module dependencies&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;h3&gt;RequireJS Apis &lt;a href="https://www.youtube.com/watch?v=4yulGISBF8w#t=05m28s" target="_blank"&gt;5:28&lt;/a&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;strong&gt;define()&lt;/strong&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Allows you to define factory function that gets called when your dependencies are resolved.  &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/blob/62336a6e6a6c4f8e234f6e52e8c07da315dc8c25/WebContent/client/src/app/public/MainModule.js#L1" target="_blank"&gt;See here for example&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Create &lt;a href="https://github.com/amdjs/amdjs-api/wiki/AMD" target="_blank"&gt;AMD definition&lt;/a&gt; - allows you to load your js files in any order, but dependencies defined what triggers get pulled.&lt;/li&gt;
+&lt;li&gt;Ready handlers&lt;ul&gt;
+&lt;li&gt;Called when dependencies resolve, if no dependencies are defined then the ready handler is called immediately i.e. define([], function(){})&lt;/li&gt;
+&lt;li&gt;Returns values stored by filename or id&lt;/li&gt;
+&lt;li&gt;Values are injected into ready handlers of other AMD definitions (or dependencies)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Every file wrapped with a define()&lt;/li&gt;
+&lt;li&gt;Every define returns a value (function, class, or instance)&lt;/li&gt;
+&lt;li&gt;Id in the cached registry is the file name&lt;/li&gt;
+&lt;li&gt;Builds tree of dependencies and when the handlers fire it creates a flat registry of values stored by dependency ids&lt;ul&gt;
+&lt;li&gt;Values are usually references to classes or functions&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;BUT nothing happens until at least one call to require().  &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/blob/62336a6e6a6c4f8e234f6e52e8c07da315dc8c25/WebContent/client/src/assets/js/boot-public.js#L47" target="_blank"&gt;See here for example&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/80edf1a206609494a7d7befd7bece55c.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;define([
+    '{file name}',
+    '{path alias can also be used here}'
+], function({injected values loaded by each dependent define}) {
+    return XXX;
+})&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;h4&gt;&lt;strong&gt;require()&lt;/strong&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;You can register a callback function that is invoked when all your dependencies have resolved.  &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/blob/62336a6e6a6c4f8e234f6e52e8c07da315dc8c25/WebContent/client/src/assets/js/boot-public.js#L47" target="_blank"&gt;See here for example&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Starts the cascading of triggering because the main class has other dependencies&lt;ul&gt;
+&lt;li&gt;cascade of define() triggers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/8fe285cd5ba07a0d866058a9990254e6.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;require(['main'], function(app) {
+    // app started
+})&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;h4&gt;&lt;strong&gt;conifg()&lt;/strong&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Let's you define location to sources and packages and also define aliases.  &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/blob/62336a6e6a6c4f8e234f6e52e8c07da315dc8c25/WebContent/client/src/assets/js/boot-public.js#L24" target="_blank"&gt;See here for example&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Use RequireJS with Angular &lt;a href="https://www.youtube.com/watch?v=4yulGISBF8w#t=11m21s" target="_blank"&gt;11:21&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Wrap all your code with define[], this is not tedious because you are defining a contract of imports that that class requires, or dependencies it needs&lt;ul&gt;
+&lt;li&gt;Think of import statements in Java&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Use require() to launch code to initialize Angular app.  &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/blob/62336a6e6a6c4f8e234f6e52e8c07da315dc8c25/WebContent/client/src/assets/js/boot-public.js#L47" target="_blank"&gt;See here for example&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;REMEMBER&lt;/strong&gt; RequireJS injects functions or classes, Angular injects instances of classes&lt;/li&gt;
+&lt;li&gt;So RequireJS can define a function that gets used in the body of a Angular function i.e. ViewController.  &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/blob/master/WebContent/client/src/app/public/login/LoginController.js" target="_blank"&gt;See here for another example&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;The below snippet of code is referred to as a constructor array.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;return ["http", "q", function(http, q) {}]&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;Grunt &lt;a href="https://www.youtube.com/watch?v=4yulGISBF8w#t=14m20s" target="_blank"&gt;14:20&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;[See here](&lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/tree/master/WebContent/client/build" target="_blank"&gt;utilizes&lt;/a&gt; for a example of the starter project's Grunt configuration.&lt;/li&gt;
+&lt;/ul&gt;</content><category term="notes"></category><category term="angularjs"></category><category term="requirejs"></category><category term="grunt"></category></entry><entry><title>Wildfly JSF Configuration</title><link href="http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2017/wildfly-jsf-configuration.html" rel="alternate"></link><published>2017-06-14T11:10:23-04:00</published><updated>2017-06-14T11:10:23-04:00</updated><author><name>Rg</name></author><id>tag:rossgodwin.github.io,2017-06-14:/v1.rossgodwin.com-src/blog/2017/wildfly-jsf-configuration.html</id><summary type="html">
+&lt;p&gt;The following is documentation for adding Mojarra or MyFaces JSF implementation as a subsystem in Wildfly 10.
+&lt;/p&gt;</summary><content type="html">&lt;ol&gt;
+&lt;li&gt;&lt;a href="#intro"&gt;Intro&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#install_implementation"&gt;Installing a new JSF implementation manually&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#change_default_implementation"&gt;Changing the default JSF implementation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#configure_non_default_implementation"&gt;Configuring a JSF app to use a non-default JSF implementation&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Intro &lt;a name="intro"&gt;&lt;/a&gt;&lt;/h3&gt;
+
+
+&lt;p&gt;The following is documentation for adding Mojarra or MyFaces JSF implementation as a subsystem in Wildfly 10.
+
+The below is taken verbatim from the &lt;a href="https://docs.jboss.org/author/display/WFLY10/JSF+Configuration" target="_blank"&gt;jboss documentation&lt;/a&gt; and is authored by Farah Juma.  This person did an incredible job.  The instructions were detailed so well that following it to the script resulted in getting the Apache MyFaces implementation installed as a subsystem in Wildfly without any deviation.  Documentation of that quality is rare so I wanted to have this documentation in case they ever removed this page.&lt;/p&gt;
+&lt;p&gt;See the following &lt;a href="https://github.com/rossgodwin/rg-archetype-j2ee-myfaces"&gt;jsf starter project&lt;/a&gt; with a myfaces implementation.&lt;/p&gt;
+&lt;h3&gt;Installing a new JSF implementation manually &lt;a name="install_implementation"&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;A new JSF implementation can be manually installed as follows:&lt;/p&gt;
+&lt;h4&gt;Add a module slot for the new JSF implementation JAR&lt;/h4&gt;
+&lt;p&gt;Create the following directory structure under the &lt;code&gt;WILDFLY_HOME/modules&lt;/code&gt; directory:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;WILDFLY_HOME/modules/com/sun/jsf-impl/&amp;lt;JSF_IMPL_NAME&amp;gt;-&amp;lt;JSF_VERSION&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;For example, for Mojarra 2.2.11, the above path would resolve to:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;WILDFLY_HOME/modules/com/sun/jsf-impl/mojarra-2.2.11&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Place the JSF implementation JAR in the &lt;code&gt;&amp;lt;JSF_IMPL_NAME&amp;gt;-&amp;lt;JSF_VERSION&amp;gt;&lt;/code&gt; subdirectory. In the same subdirectory, add a &lt;code&gt;module.xml&lt;/code&gt; file similar to the Mojarra or MyFaces template examples. Change the resource-root-path to the name of your JSF implementation JAR and fill in appropriate values for &lt;code&gt;${jsf-impl-name}&lt;/code&gt; and &lt;code&gt;${jsf-version}&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;Add a module slot for the new JSF API JAR&lt;/h4&gt;
+&lt;p&gt;Create the following directory structure under the &lt;code&gt;WILDFLY_HOME/modules&lt;/code&gt; directory:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;WILDFLY_HOME/modules/javax/faces/api/&amp;lt;JSF_IMPL_NAME&amp;gt;-&amp;lt;JSF_VERSION&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Place the JSF API JAR in the &lt;code&gt;&amp;lt;JSF_IMPL_NAME&amp;gt;-&amp;lt;JSF_VERSION&amp;gt;&lt;/code&gt; subdirectory. In the same subdirectory, add a &lt;code&gt;module.xml&lt;/code&gt; file similar to the Mojarra or MyFaces template examples. Change the resource-root-path to the name of your JSF API JAR and fill in appropriate values for &lt;code&gt;${jsf-impl-name}&lt;/code&gt; and &lt;code&gt;${jsf-version}&lt;/code&gt;.&lt;/p&gt;
+&lt;h4&gt;Add a module slot for the JSF injection JAR&lt;/h4&gt;
+&lt;p&gt;Create the following directory structure under the &lt;code&gt;WILDFLY_HOME/modules&lt;/code&gt; directory:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;WILDFLY_HOME/modules/org/jboss/as/jsf-injection/&amp;lt;JSF_IMPL_NAME&amp;gt;-&amp;lt;JSF_VERSION&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Copy the wildfly-jsf-injection JAR and the weld-core-jsf JAR from &lt;code&gt;WILDFLY_HOME/modules/system/layers/base/org/jboss/as/jsf-injection/main&lt;/code&gt; to the &lt;code&gt;&amp;lt;JSF_IMPL_NAME&amp;gt;-&amp;lt;JSF_VERSION&amp;gt;&lt;/code&gt; subdirectory.&lt;/p&gt;
+&lt;p&gt;In the &lt;code&gt;&amp;lt;JSF_IMPL_NAME&amp;gt;-&amp;lt;JSF_VERSION&amp;gt;&lt;/code&gt; subdirectory, add a &lt;code&gt;module.xml&lt;/code&gt; file similar to the Mojarra or MyFaces template examples and fill in appropriate values for &lt;code&gt;${jsf-impl-name}&lt;/code&gt;, &lt;code&gt;${jsf-version}&lt;/code&gt;, &lt;code&gt;${version.jboss.as}&lt;/code&gt;, and &lt;code&gt;${version.weld.core}&lt;/code&gt;. (These last two placeholders depend on the versions of the wildfly-jsf-injection and weld-core-jsf JARs that were copied over in the previous step.)&lt;/p&gt;
+&lt;h4&gt;For MyFaces only - add a module for the commons-digester JAR&lt;/h4&gt;
+&lt;p&gt;Create the following directory structure under the &lt;code&gt;WILDFLY_HOME/modules&lt;/code&gt; directory:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;WILDFLY_HOME/modules/org/apache/commons/digester/main&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Place the commons-digester JAR in &lt;code&gt;WILDFLY_HOME/modules/org/apache/commons/digester/main&lt;/code&gt;. In the main subdirectory, add a &lt;code&gt;module.xml&lt;/code&gt; file similar to this template. Fill in the appropriate value for &lt;code&gt;${version.commons-digester}&lt;/code&gt;.&lt;/p&gt;
+&lt;h4&gt;Start the server&lt;/h4&gt;
+&lt;p&gt;After starting the server, the following CLI command can be used to verify that your new JSF implementation has been installed successfully. The new JSF implementation should appear in the output of this command.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;[standalone@localhost:9990 /] /subsystem=jsf:list-active-jsf-impls()&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;Changing the default JSF implementation &lt;a name="change_default_implementation"&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The following CLI command can be used to make a newly installed JSF implementation the default JSF implementation used by WildFly:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;/subsystem=jsf/:write-attribute(name=default-jsf-impl-slot,value=&amp;lt;JSF_IMPL_NAME&amp;gt;-&amp;lt;JSF_VERSION&amp;gt;)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;A server restart will be required for this change to take effect.&lt;/p&gt;
+&lt;h3&gt;Configuring a JSF app to use a non-default JSF implementation &lt;a name="configure_non_default_implementation"&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;A JSF app can be configured to use an installed JSF implementation that's not the default implementation by adding a &lt;code&gt;org.jboss.jbossfaces.JSF_CONFIG_NAME&lt;/code&gt; context parameter to its &lt;code&gt;web.xml&lt;/code&gt; file. For example, to indicate that a JSF app should use MyFaces 2.2.12 (assuming MyFaces 2.2.12 has been installed on the server), the following context parameter would need to be added:&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/a7fb7b89ddf74c131490cd994734a04c.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;&lt;context-param&gt;
+  &lt;param-name&gt;org.jboss.jbossfaces.JSF_CONFIG_NAME&lt;/param-name&gt;
+  &lt;param-value&gt;myfaces-2.2.12&lt;/param-value&gt;
+&lt;/context-param&gt;&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;p&gt;If a JSF app does not specify this context parameter, the default JSF implementation will be used for that app.&lt;/p&gt;</content><category term="notes"></category><category term="wildfly"></category><category term="jsf"></category><category term="myfaces"></category></entry><entry><title>Hibernate Notes</title><link href="http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2017/hibernate-notes.html" rel="alternate"></link><published>2017-03-11T09:48:23-04:00</published><updated>2017-03-11T09:48:23-04:00</updated><author><name>Rg</name></author><id>tag:rossgodwin.github.io,2017-03-11:/v1.rossgodwin.com-src/blog/2017/hibernate-notes.html</id><summary type="html">&lt;p&gt;The following are some quotes and notes from taken from Hibernate 5.0 documentation.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;The following are some quotes and notes from taken from Hibernate 5.0 documentation.&lt;/p&gt;
+
+
+&lt;h2&gt;Quotes&lt;/h2&gt;
+&lt;!-- --&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;A SessionFactory is an expensive-to-create, threadsafe object, intended to be shared by all application threads. It is created once, usually on application startup, from a Configuration instance.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;!-- --&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;A Session is an inexpensive, non-threadsafe object that should be used once and then discarded for: a single request, a conversation or a single unit of work. A Session will not obtain a JDBC Connection, or a Datasource, unless it is needed. It will not consume any resources until used.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;!-- --&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Do not use the session-per-operation antipattern: do not open and close a Session for every simple database call in a single thread.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;!-- --&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The most common pattern in a multi-user client/server application is session-per-request.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;!-- --&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;In this model, a request from the client is sent to the server, where the Hibernate persistence layer runs. A new Hibernate Session is opened, and all database operations are executed in this unit of work. On completion of the work, and once the response for the client has been prepared, the session is flushed and closed.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;!-- --&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Starting with version 3.0.1, Hibernate added the SessionFactory.getCurrentSession() method. Initially, this assumed usage of JTA transactions, where the JTA transaction defined both the scope and context of a current session. Given the maturity of the numerous stand-alone JTA TransactionManager implementations, most, if not all, applications should be using JTA transaction management, whether or not they are deployed into a J2EE container. Based on that, the JTA-based contextual sessions are all you need to use.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Transaction&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;unit of work, if onen step fails the whole unit of work must fail (atomicity all operations are executed as an atomic unit)&lt;/li&gt;
+&lt;li&gt;keeps data clean and in consistant state by keeping it hidden from other transactions&lt;/li&gt;
+&lt;li&gt;sql statements execute inside a transaction&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Programmatic transaction demarcation&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;you begin the transaction and commit or rollback&lt;/li&gt;
+&lt;li&gt;transaction interfaces&lt;/li&gt;
+&lt;li&gt;java.sql.Connection - direct usage of JDBC transactions in hibernate is discouraged b/c it binds your application to JDBC environment&lt;/li&gt;
+&lt;li&gt;org.hibernate.Transaction - works in nonmanaged plain JDBC environment and in an application server with JTA (Java Transaction API) as system transaction service&lt;/li&gt;
+&lt;li&gt;javax.transaction.UserTransaction - should be primary choice whenever you have JTA-compatible transaction service&lt;/li&gt;
+&lt;li&gt;javax.persistence.EntityTransaction - interface for programmatic transaction control in Java SE applications that use Java Persistence&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Declarative transaction demarcation&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;you declare when you want to work inside a transaction, then the runtime environment handles this concern&lt;/li&gt;
+&lt;li&gt;EJB container provides declarative transaction services in Java; called container-managed transactions (CMT)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;10.1.2 on&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Programmatic transactions in Java SE&lt;/li&gt;
+&lt;li&gt;A hibernate session is lazy, so it won't consume any resources unless they're needed.  A JDBC connection is obtained only when a transaction begins.&lt;/li&gt;
+&lt;li&gt;beginTransaction() equivalent to setAutoCommit(false)&lt;/li&gt;
+&lt;li&gt;NOTE: starting in Hibernate 3 all exceptions thrown are subtypes of the unchecked RuntimeException, before all exceptions thrown by Hibernate were checked&lt;/li&gt;
+&lt;li&gt;All Hibernate exceptions are fatal&lt;/li&gt;
+&lt;/ul&gt;</content><category term="notes"></category><category term="hibernate"></category></entry><entry><title>iOS Launch Images</title><link href="http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2017/ios-launch-images.html" rel="alternate"></link><published>2017-03-03T08:10:23-04:00</published><updated>2017-03-03T08:10:23-04:00</updated><author><name>Rg</name></author><id>tag:rossgodwin.github.io,2017-03-03:/v1.rossgodwin.com-src/blog/2017/ios-launch-images.html</id><summary type="html">
+&lt;p&gt;For me it has always been challenging to figure the correct image size to assign to the iOS devices, so in this post I try to lay out the image size associated to the iOS device.  I didn't fill in all the options as I didn't assign a launch image for every device rather only the ones I felt would be used by our target iOS users.
+&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="#intro"&gt;Intro&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;LaunchImage&lt;ol&gt;
+&lt;li&gt;&lt;a href="#launchimage0"&gt;macOS Yosemite 10.10.5 / Xcode 6.3.2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#launchimage1"&gt;macOS Sierra 10.12.3 / Xcode 8.2.1&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#resources"&gt;Helpful Resources&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Intro &lt;a name="intro"&gt;&lt;/a&gt;&lt;/h3&gt;
+
+
+&lt;p&gt;For me it has always been challenging to figure the correct image size to assign to the iOS devices, so in this post I try to lay out the image size associated to the iOS device.  I didn't fill in all the options as I didn't assign a launch image for every device rather only the ones I felt would be used by our target iOS users.
+
+Also the devices in the image set seem to change with different versions of the operating system and Xcode, so I have a table mapping for each macOS version / Xcode version combination that I encounter.  The 'Source Image Size' column is the source image size I used to scale for the device.  Also the 'Filename' column is just the name that I used, you can assign whatever filename you prefer.&lt;/p&gt;
+&lt;h3&gt;LaunchImage&lt;/h3&gt;
+&lt;h4&gt;macOS Yosemite 10.10.5 / Xcode 6.3.2 &lt;a name="launchimage0"&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;Chart: (&lt;a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/images/blog/ios-launch-images/yosemite.png" target="_blank"&gt;Image&lt;/a&gt;) or (&lt;a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/images/blog/ios-launch-images/yosemite-markdown.txt" target="_blank"&gt;Markdown&lt;/a&gt;)&lt;/p&gt;
+&lt;h4&gt;macOS Sierra 10.12.3 / Xcode 8.2.1 &lt;a name="launchimage1"&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;Chart: (&lt;a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/images/blog/ios-launch-images/sierra.png" target="_blank"&gt;Image&lt;/a&gt;) or (&lt;a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/images/blog/ios-launch-images/sierra-markdown.txt" target="_blank"&gt;Markdown&lt;/a&gt;)&lt;/p&gt;
+&lt;h3&gt;Helpful Resources &lt;a name="resources"&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/34112681/ios-launch-images-driving-me-crazy" target="_blank"&gt;Stackoverflow Post&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.ios-developer.net/iphone-ipad-programmer/icons_and_graphics/default-image" target="_blank"&gt;ios-developer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://iosres.com/" target="_blank"&gt;iosres&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.idev101.com/code/User_Interface/launchImages.html" target="_blank"&gt;idev101&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="notes"></category><category term="ios"></category><category term="xcode"></category></entry><entry><title>Agile Software Development</title><link href="http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2017/agile-software-development.html" rel="alternate"></link><published>2017-02-07T11:10:23-04:00</published><updated>2017-02-07T11:10:23-04:00</updated><author><name>Rg</name></author><id>tag:rossgodwin.github.io,2017-02-07:/v1.rossgodwin.com-src/blog/2017/agile-software-development.html</id><summary type="html">&lt;p&gt;These are just some basic notes that I took while doing some research on agile softwarement development.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Table of contents&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="#defined"&gt;Defined&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#paragraph1"&gt;Philosophy&lt;/a&gt;&lt;ol&gt;
+&lt;li&gt;&lt;a href="#adaptive_vs_predictive"&gt;Adaptive vs Predictive&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#code_vs_document"&gt;Code vs Document&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#overview"&gt;Overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#values"&gt;Values&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#principles"&gt;Principles&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#agile_methods"&gt;Agile Methods&lt;/a&gt;&lt;ol&gt;
+&lt;li&gt;&lt;a href="#agile_practices"&gt;Agile Practices&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#measuring_agility"&gt;Measuring Agility&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#experience"&gt;Experience&lt;/a&gt;&lt;ol&gt;
+&lt;li&gt;&lt;a href="#large-scale"&gt;Large-scale&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#agile_pitfalls"&gt;Agile Pitfalls&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Defined &lt;a name="defined"&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Group of software development methods in which requirements and solutions evolve through collaboration between self-organizing, cross-functional teams.  Promotes adaptive planning, evolutionary development, early delivery, continuous improvement, encourages rapid and flexible response to change.  Conceptual framework to deliver working software with minimum amount of work.&lt;/p&gt;
+&lt;h3&gt;Philosophy &lt;a name="philosophy"&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Agile development is targeted at complex systems and projects with dynamic, non deterministic, and non-linear characteristics.  Stable plans and predictions are often hard to get at early stages.  Big up-front designs cause waste and are not economically sound.&lt;/p&gt;
+&lt;h4&gt;Adaptive vs Predictive &lt;a name="adaptive_vs_predictive"&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;Agile is on the adaptive side of the continuum.  An adaptive team will have difficulty describing what will happen in the future and they also cannot report what exactly they will do next week.&lt;/p&gt;
+&lt;p&gt;Use risk analysis to choose between adaptive (agile) and predictive (plan-driven) methods.  &lt;a href="https://en.wikipedia.org/wiki/Agile_software_development#Adaptive_vs._predictive" target="_blank"&gt;See chart in the section&lt;/a&gt;.&lt;/p&gt;
+&lt;h4&gt;Code vs Document &lt;a name="code_vs_document"&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;Documentation should be just barely good enough (JBGE).  Too much documentation is usually  a waste and out of sync with the code.  Too little documentation may cause problems for maintenance, communication, learning, and knowledge sharing.  When documenting ask your, "what would you want to know if you joined the team tomorrow".&lt;/p&gt;
+&lt;h3&gt;Overview &lt;a name="overview"&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Iterations&lt;/li&gt;
+&lt;li&gt;plan, req. gather, design, code, unit test, acceptance test&lt;/li&gt;
+&lt;li&gt;multiple iterations required to release product or new feature(s)&lt;/li&gt;
+&lt;li&gt;Efficiency and face-to-face communication&lt;/li&gt;
+&lt;li&gt;customer-rep or stakeholder available to developers for mid-iteration questions&lt;/li&gt;
+&lt;li&gt;information radiator - large board displaying status of software product&lt;/li&gt;
+&lt;li&gt;Short feedback&lt;/li&gt;
+&lt;li&gt;brief meeting with team members to discuss where they are, days work, and roadblocks&lt;/li&gt;
+&lt;li&gt;Quality focus&lt;/li&gt;
+&lt;li&gt;tools and techniques to improve quality and enhance project agility&lt;/li&gt;
+&lt;li&gt;continuous integration, unit testing, test-driven development, design patterns, code refactoring&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Values &lt;a name="values"&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Pair programming&lt;/li&gt;
+&lt;li&gt;Working software more important than just presenting documents to clients in meetings&lt;/li&gt;
+&lt;li&gt;Requirements cannot be fully collected at the beginning of development process, so continuous customer and stakeholder involvement is very important&lt;/li&gt;
+&lt;li&gt;Quick responses to change and continuous development&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Principles &lt;a name="principles"&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Welcome changing requirements&lt;/li&gt;
+&lt;li&gt;Working software delivered frequently&lt;/li&gt;
+&lt;li&gt;Close, daily cooperation between business people and developers&lt;/li&gt;
+&lt;li&gt;Continuous attention to good design&lt;/li&gt;
+&lt;li&gt;Self-organizing teams&lt;/li&gt;
+&lt;li&gt;Regular adaptation to changing circumstances&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Agile Methods &lt;a name="agile_methods"&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h4&gt;Agile Practices &lt;a name="agile_practices"&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/Agile_software_development#Agile_practices" target="_blank"&gt;See&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Measuring Agility &lt;a name="measuring_agility"&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Agility measurement index - scores against 5 dimensions of development (duration, risk, novelty, effort, and interaction).  Nokia test, Karlskrona test&lt;/p&gt;
+&lt;h3&gt;Experience &lt;a name="experience"&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h4&gt;Large-scale &lt;a name="large-scale"&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Things that may negatively impact a agile project:&lt;/li&gt;
+&lt;li&gt;Large-scale development (&amp;gt;20 developers)&lt;/li&gt;
+&lt;li&gt;Forcing agile process on development team&lt;/li&gt;
+&lt;li&gt;Mission critical (i.e. software for avionics)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Agile Pitfalls &lt;a name="agile_pitfalls"&gt;&lt;/a&gt;&lt;/h4&gt;
+&lt;h5&gt;Product owner role not properly filled&lt;/h5&gt;
+&lt;p&gt;Product owner role filled by a development team member.  The business has to be accountable or the agile ecosystem breaks down.  The development team needs prioritization and feedback from the business.&lt;/p&gt;
+&lt;h5&gt;Problem solving in daily scrum&lt;/h5&gt;
+&lt;p&gt;If problem solving occurs it often does so so with certain team members and is not best use of entire team's time.  Table problem solving for sub-team meeting following daily scrum.&lt;/p&gt;
+&lt;h5&gt;Assigning tasks&lt;/h5&gt;
+&lt;p&gt;A tendency is for assignors to box team members into certain roles (team member A always does database work).  Prevents stretching team member's abilities and prevents cross-training opportunities.&lt;/p&gt;
+&lt;h5&gt;Lack of automated testing&lt;/h5&gt;
+&lt;p&gt;Having automated testing framework to take care of system and integration tests is a safety net against regressions from new development and introduction of new defects to code refactoring.&lt;/p&gt;</content><category term="notes"></category><category term="agile"></category><category term="software development"></category></entry><entry><title>Wildfly Quartz 2.2x Setup</title><link href="http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2016/wildfly-quartz-22x-setup.html" rel="alternate"></link><published>2016-12-15T11:10:23-04:00</published><updated>2016-12-15T11:10:23-04:00</updated><author><name>Rg</name></author><id>tag:rossgodwin.github.io,2016-12-15:/v1.rossgodwin.com-src/blog/2016/wildfly-quartz-22x-setup.html</id><summary type="html">&lt;p&gt;This explains how to setup Quartz scheduler with Wildfly.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Step 1&lt;/h2&gt;
+&lt;p&gt;Download &lt;code&gt;quartz-2.2.3&lt;/code&gt; and extract using 7-zip&lt;/p&gt;
+&lt;h2&gt;Step 2&lt;/h2&gt;
+&lt;p&gt;Dependencies&lt;/p&gt;
+&lt;p&gt;For slf4j quartz depends on &lt;code&gt;slf4j-api-1.7.7.jar&lt;/code&gt; and &lt;code&gt;slf4j-log4j12-1.7.7.jar&lt;/code&gt;.
+Wildfly does contain the slf4j module &lt;code&gt;{wildfly home}\modules\system\layers\base\org\slf4j&lt;/code&gt;.
+In my version of wildfly it was &lt;code&gt;1.7.7.jbossorg-1&lt;/code&gt; so I went with this.  To do so I updated the deployment dependencies in &lt;code&gt;WebRoot/WEB-INF/jboss-deployment-structure.xml&lt;/code&gt; to include &lt;code&gt;&amp;lt;module name="org.slf4j" /&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;The documentation mentions "If you want to store your scheduling data in a database then you will also need the c3p0 library." so I went ahead and included the version that came with quartz.&lt;/p&gt;
+&lt;p&gt;And then of cource the quartz jars: &lt;code&gt;quartz-2.2.3.jar&lt;/code&gt; and &lt;code&gt;quartz-jobs-2.2.3.jar&lt;/code&gt;&lt;/p&gt;
+&lt;h2&gt;Step 3&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;quartz.properties&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;I placed mine in &lt;code&gt;WILDFLY_HOME\bin\conf&lt;/code&gt;.  The documentation also specifies you can place it under &lt;code&gt;WEB-INF&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/b6028016e9f55c67bbc2984019cbcc54.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;org.quartz.scheduler.instanceName=AppScheduler
+org.quartz.threadPool.threadCount=3
+org.quartz.threadPool.class=org.quartz.simpl.SimpleThreadPool
+
+org.quartz.jobStore.class=org.quartz.impl.jdbcjobstore.JobStoreTX
+org.quartz.jobStore.driverDelegateClass=org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+org.quartz.jobStore.useProperties=false
+org.quartz.jobStore.tablePrefix=QRTZ_
+org.quartz.jobStore.dataSource=myDS
+
+org.quartz.dataSource.myDS.jndiURL=java:/{name of datasource}&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;p&gt;Note: You can find the jndi name of your datasource under the datasources tag in your Wildfly &lt;code&gt;standalone.xml&lt;/code&gt;.
+Note: If you have multiple wildfly instances running, &lt;a href="http://www.quartz-scheduler.org/documentation/quartz-2.2.x/configuration/ConfigJDBCJobStoreClustering.html" target="_blank"&gt;Quartz can be configured for clustering&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Step 4&lt;/h2&gt;
+&lt;p&gt;Under &lt;code&gt;{QUARTZ Root}\docs\dbTables&lt;/code&gt; they provide the table creation scripts for several databases.  Go ahead and create the tables for your database.&lt;/p&gt;
+&lt;h2&gt;Step 5&lt;/h2&gt;
+&lt;p&gt;I initialized the scheduler within a &lt;a href="http://quartz-scheduler.org/documentation/quartz-2.2.x/cookbook/ServletInitScheduler" target="_blank"&gt;servlet container&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Step 6&lt;/h2&gt;
+&lt;p&gt;You can get access to &lt;code&gt;org.quartz.impl.StdSchedulerFactory&lt;/code&gt; as a attribute in &lt;code&gt;javax.servlet.GenericServlet#getServletContext()&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;StdSchedulerFactory factory = (StdSchedulerFactory) getServletContext().getAttribute(QuartzInitializerServlet.QUARTZ_FACTORY_KEY);&lt;/code&gt;&lt;/p&gt;</content><category term="notes"></category><category term="wildfly"></category><category term="quartz"></category></entry><entry><title>Android (multi library) App Migrate from Eclipse to Android Studio</title><link href="http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2016/android-multi-library-app-migrate-from-eclipse-to-android-studio.html" rel="alternate"></link><published>2016-06-05T09:48:23-04:00</published><updated>2016-06-05T09:48:23-04:00</updated><author><name>Rg</name></author><id>tag:rossgodwin.github.io,2016-06-05:/v1.rossgodwin.com-src/blog/2016/android-multi-library-app-migrate-from-eclipse-to-android-studio.html</id><summary type="html">&lt;p&gt;The following is an explanation of taking a android app project developed in Eclipse that contains multiple library dependencies and migrating the project to Android Studio.  The below table list the projects and dependencies.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;The following is an explanation of taking a android app project developed in Eclipse that contains multiple library dependencies and migrating the project to Android Studio.  The below table list the projects and dependencies.&lt;/p&gt;
+
+
+&lt;div class="article_content_table0"&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Project&lt;/th&gt;
+&lt;th align="center"&gt;Project Type&lt;/th&gt;
+&lt;th align="center"&gt;Dependency&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;CarPartsLib&lt;/td&gt;
+&lt;td align="center"&gt;Library&lt;/td&gt;
+&lt;td align="center"&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;EngineLib&lt;/td&gt;
+&lt;td align="center"&gt;Library&lt;/td&gt;
+&lt;td align="center"&gt;CarPartsLib&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;BodyLib&lt;/td&gt;
+&lt;td align="center"&gt;Library&lt;/td&gt;
+&lt;td align="center"&gt;CarPartsLib, EngineLib&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CarApp&lt;/td&gt;
+&lt;td align="center"&gt;Application&lt;/td&gt;
+&lt;td align="center"&gt;CarPartsLib, EngineLib, BodyLib&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;h2&gt;Import CarPartsLib library project&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Import (under Other Import Options I unchecked 'Create Gradle-style...)&lt;/li&gt;
+&lt;li&gt;If module name is app rename module to CarPartsLibModule&lt;/li&gt;
+&lt;li&gt;Update &lt;code&gt;settings.gradle&lt;/code&gt; &lt;code&gt;include 'CarPartsLibModule'&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Update module &lt;code&gt;build.gradle&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/535b9fd5bbb5ba2741a075772e9b985a.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        minSdkVersion 15
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    &lt;include dependencies here&gt;
+}&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Update project &lt;code&gt;build.gradle&lt;/code&gt; - Comment out or remove dependencies&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Import EngineLib library project&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Import (under Other Import Options I unchecked &lt;code&gt;Create Gradle-style...&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;File -&amp;gt; Project Structure... -&amp;gt; Select CarPartsLib and delete&lt;/li&gt;
+&lt;li&gt;With the project structure view selected, right-click CarPartsLib folder and choose &lt;code&gt;Delete...&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Rename &lt;em&gt;app&lt;/em&gt; module to EngineLibModule&lt;/li&gt;
+&lt;li&gt;Update settings.gradle&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/9e0965cbc063aff34f544425e639d274.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;include ':EngineLibModule'
+
+include ':CarPartsLib', ':CarPartsLib:CarPartsLibModule'
+project(':CarPartsLib').projectDir = new File(settingsDir, '../CarPartsLib')
+project(':CarPartsLib:CarPartsLibModule').projectDir = new File(settingsDir, '../CarPartsLib/CarPartsLibModule')&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Update project build.gradle - Under allprojects add &lt;code&gt;buildDir = "E:/temp/${rootProject.name}/${project.name}"&lt;/code&gt; - this prevents from getting the file name too long on Windows error&lt;/li&gt;
+&lt;li&gt;Update module &lt;code&gt;build.gradle&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/57b74842d174479e6e206af92d5f87da.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;evaluationDependsOn(':CarPartsLib')
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        minSdkVersion 15
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    compile project(':CarPartsLib:CarPartsLibModule')
+    &lt;include other dependencies here&gt;
+}&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;h2&gt;Import BodyLib library project&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Import (under Other Import Options I unchecked &lt;code&gt;Create Gradle-style...&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;File -&amp;gt; Project Structure... -&amp;gt; Select CarPartsLib and delete, select EngineLib and delete&lt;/li&gt;
+&lt;li&gt;With the project structure view selected, select CarPartsLib and EngineLib then right-click choose &lt;code&gt;Delete...&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Rename &lt;em&gt;app&lt;/em&gt; module to BodyLibModule&lt;/li&gt;
+&lt;li&gt;Update &lt;code&gt;settings.gradle&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/9fa9dc3615721139b05af78e509bb265.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;include ':EngineLibModule'
+
+include ':CarPartsLib', ':CarPartsLib:CarPartsLibModule'
+project(':CarPartsLib').projectDir = new File(settingsDir, '../CarPartsLib')
+project(':CarPartsLib:CarPartsLibModule').projectDir = new File(settingsDir, '../CarPartsLib/CarPartsLibModule')
+
+include ':EngineLib', ':EngineLib:EngineLibModule'
+project(':EngineLib').projectDir = new File(settingsDir, '../EngineLib')
+project(':EngineLib:EngineLibModule').projectDir = new File(settingsDir, '../EngineLib/EngineLibModule')&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Update project build.gradle - Under allprojects add &lt;code&gt;buildDir = "E:/temp/${rootProject.name}/${project.name}"&lt;/code&gt; - this prevents from getting the file name too long on Windows error&lt;/li&gt;
+&lt;li&gt;Update module &lt;code&gt;build.gradle&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/df5daf4063edc1c697b9459c3f0c4ac3.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;evaluationDependsOn(':CarPartsLib')
+evaluationDependsOn(':EngineLib')
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        minSdkVersion 15
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    compile project(':CarPartsLib:CarPartsLibModule')
+    compile project(':EngineLib:EngineLibModule')
+    &lt;include other dependencies here&gt;
+}&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;h2&gt;Import CarApp application project&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Import (under Other Import Options I unchecked &lt;code&gt;Create Gradle-style...&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;File -&amp;gt; Project Structure... -&amp;gt; Select CarPartsLib and delete, select EngineLib and delete, select BodyLib and delete&lt;/li&gt;
+&lt;li&gt;With the project structure view selected, select CarPartsLib, EngineLib, and BodyLib then right-click choose &lt;code&gt;Delete...&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Update &lt;code&gt;settings.gradle&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/dcaad67d1e5ff28b68a298edd2a08492.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;include ':CarApp'
+
+include ':CarPartsLib', ':CarPartsLib:CarPartsLibModule'
+project(':CarPartsLib').projectDir = new File(settingsDir, '../CarPartsLib')
+project(':CarPartsLib:CarPartsLibModule').projectDir = new File(settingsDir, '../CarPartsLib/CarPartsLibModule')
+
+include ':EngineLib', ':EngineLib:EngineLibModule'
+project(':EngineLib').projectDir = new File(settingsDir, '../EngineLib')
+project(':EngineLib:EngineLibModule').projectDir = new File(settingsDir, '../EngineLib/EngineLibModule')
+
+include ':BodyLib', ':BodyLib:BodyLibModule'
+project(':BodyLib').projectDir = new File(settingsDir, '../BodyLib')
+project(':BodyLib:BodyLibModule').projectDir = new File(settingsDir, '../BodyLib/BodyLibModule')&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Update project &lt;code&gt;build.gradle&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/20393136d1fe6086c8d253bdb081ab22.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.1.0'
+    }
+}
+
+allprojects {
+    buildDir = "E:/temp/${rootProject.name}/${project.name}"
+}&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Add &lt;code&gt;gradle.properties&lt;/code&gt; to project root for gradle optimization&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/1e5fcb45b3114596eca91f0fa1d2da64.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;# Project-wide Gradle settings.
+
+# IDE (e.g. Android Studio) users:
+# Settings specified in this file will override any Gradle settings
+# configured through the IDE.
+
+# For more details on how to configure your build environment visit
+# http://www.gradle.org/docs/current/userguide/build_environment.html
+
+# The Gradle daemon aims to improve the startup and execution time of Gradle.
+# When set to true the Gradle daemon is to run the build.
+# TODO: disable daemon on CI, since builds should be clean and reliable on servers
+org.gradle.daemon=true
+
+# Specifies the JVM arguments used for the daemon process.
+# The setting is particularly useful for tweaking memory settings.
+# Default value: -Xmx10248m -XX:MaxPermSize=256m
+#org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8
+
+# According to documentation:
+#   If you have defined a value for javaMaxHeapSize in your module-level build.gradle file, you need to
+#   set the daemon's max heap size to the value of javaMaxHeapSize + 1024 MB. For example, if you have set
+#   javaMaxHeapSize to "2g", you need to add the following to your project's gradle.properties file:
+org.gradle.jvmargs = -Xmx3072m
+
+# When configured, Gradle will run in incubating parallel mode.
+# This option should only be used with decoupled projects. More details, visit
+# http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects
+org.gradle.parallel=true
+
+# Enables new incubating mode that makes Gradle selective when configuring projects. 
+# Only relevant projects are configured which results in faster builds for large multi-projects.
+# http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:configuration_on_demand
+org.gradle.configureondemand=true&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Update module &lt;code&gt;build.gradle&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/91ba79f121ec8a17c81f38d8db3622c6.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;evaluationDependsOn(':CarPartsLib')
+evaluationDependsOn(':EngineLib')
+evaluationDependsOn(':BodyLib')
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "&lt;your application id here including package structure&gt;"
+        minSdkVersion 15
+        targetSdkVersion 17
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+    dexOptions {
+        maxProcessCount 6
+        javaMaxHeapSize "2g"
+    }
+
+    packagingOptions {
+        exclude 'META-INF/maven/ch.acra/acra/pom.properties'
+        exclude 'META-INF/maven/ch.acra/acra/pom.xml'
+    }
+}
+
+dependencies {
+    compile project(':CarPartsLib:CarPartsLibModule')
+    compile project(':EngineLib:EngineLibModule')
+    compile project(':BodyLib:BodyLibModule')
+    &lt;include other dependencies here&gt;
+}&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;</content><category term="notes"></category><category term="android"></category><category term="eclipse"></category><category term="android studio"></category><category term="intellij"></category></entry><entry><title>Xcode upgrade to 7.2.1</title><link href="http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2016/xcode-upgrade-to-721.html" rel="alternate"></link><published>2016-06-03T09:48:23-04:00</published><updated>2016-06-03T09:48:23-04:00</updated><author><name>Rg</name></author><id>tag:rossgodwin.github.io,2016-06-03:/v1.rossgodwin.com-src/blog/2016/xcode-upgrade-to-721.html</id><summary type="html">&lt;p&gt;I upgrade Xcode to 7.2.1 which also required a OS update to OS X Yosemite (10.10.5).  When building and running against a software version of 8.2 or less, the app runs fine.  As soon as I switch simulator versions to 9.2 I encountered a couple of problems.  Below is a short writeup on how I resolved my issues.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;I upgrade Xcode to 7.2.1 which also required a OS update to OS X Yosemite (10.10.5).  When building and running against a software version of 8.2 or less, the app runs fine.  As soon as I switch simulator versions to 9.2 I encountered a couple of problems.  Below is a short writeup on how I resolved my issues.&lt;/p&gt;
+
+
+&lt;h2&gt;Issue 1&lt;/h2&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/f2d422a658c76236d19ccc6444b8dbf1.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;2016-05-24 14:35:08.709 AnonymousXcodeProject[6456:25515] Error Error Domain=NSURLErrorDomain Code=-1022 "The resource could not be loaded because the App Transport Security policy requires the use of a secure connection." UserInfo={NSUnderlyingError=0x7ff4a266e6d0 {Error Domain=kCFErrorDomainCFNetwork Code=-1022 "The resource could not be loaded because the App Transport Security policy requires the use of a secure connection." UserInfo={NSErrorFailingURLStringKey=http://192.168.1.205:81/smobserv/rest-srv/profile/10011?output=json, NSLocalizedDescription=The resource could not be loaded because the App Transport Security policy requires the use of a secure connection., NSErrorFailingURLKey=http://192.168.1.205:81/smobserv/rest-srv/profile/10011?output=json}}, NSErrorFailingURLStringKey=http://192.168.1.205:81/smobserv/rest-srv/profile/10011?output=json, NSErrorFailingURLKey=http://192.168.1.205:81/smobserv/rest-srv/profile/10011?output=json, NSLocalizedDescription=The resource could not be loaded because the App Transport Security policy requires the use of a secure connection.}; The resource could not be loaded because the App Transport Security policy requires the use of a secure connection.
+2016-05-24 14:35:08.733 AnonymousXcodeProject[6456:25515] *** Assertion failure in -[UIApplication _runWithMainScene:transitionContext:completion:], /BuildRoot/Library/Caches/com.apple.xbs/Sources/UIKit_Sim/UIKit-3512.30.14/UIApplication.m:3315
+2016-05-24 14:35:08.736 AnonymousXcodeProject[6456:25515] *** Terminating app due to uncaught exception 'NSInternalInconsistencyException', reason: 'Application windows are expected to have a root view controller at the end of application launch'&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;p&gt;For our dev and production environments we always run through https so I went ahead and adjusted my project &lt;code&gt;.plist&lt;/code&gt; file to include the following property:&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/f2e65402943a622cb14d0a9bce32be5a.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;dictionary property NSAppTransportSecurity
+NSAllowsArbitraryLoads = true&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;h2&gt;Issue 2&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://forums.developer.apple.com/message/8609#8609" target="_blank"&gt;I found the following post very helpful for the libraries issue.&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;As all wonderful iOS and OS X developers have found in Xcode 7, dynamic libraries are no longer xx.dylib. They are now xx.tbd. According to an Apple staff member, the .tbd files are new "text-based stub libraries", that provide a much more compact version of the stub libraries for use in the SDK, and help to significantly reduce its download size. My best assumption is that this is part of the "App Thinning" and how they are able to reduce iOS 9 and OS X by so much.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If Xcode is not able to find a referenced &lt;code&gt;file/library/etc&lt;/code&gt; in the Project Navigator, then the text will be highlighted red.  In my case I had some &lt;code&gt;.dylib&lt;/code&gt; files that could not be found.  So I replaced the &lt;code&gt;.dylib&lt;/code&gt; with the corresponding .tdb.&lt;/p&gt;
+&lt;p&gt;Now on the 9.2 simulator the app runs without a problem but as soon as I attempt to deploy the app to a physical device I begin running into library issues.&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/4b1839f1c38f1f1109252d9fb979f7bb.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;error: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool: can't open file: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/usr/lib/libz.dylib (No such file or directory)
+error: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool: can't open file: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/usr/lib/libicucore.dylib (No such file or directory)
+error: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool: can't open file: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/usr/lib/libc++.dylib (No such file or directory)&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;p&gt;I had a project and also a dependency sub project that were referencing the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;libc++.dylib&lt;/li&gt;
+&lt;li&gt;libicucore.dylib&lt;/li&gt;
+&lt;li&gt;libz.dylib&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In the subproject &lt;code&gt;Targets -&amp;gt; Build Phases&lt;/code&gt; under &lt;code&gt;Link Binary With Libraries&lt;/code&gt; I went ahead and deleted these 3 dynamic libraries.
+Then in &lt;code&gt;Targets -&amp;gt; Build Settings&lt;/code&gt; under &lt;code&gt;Other Linker Flags&lt;/code&gt; I added:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;-lc++&lt;/li&gt;
+&lt;li&gt;-lz&lt;/li&gt;
+&lt;li&gt;-licucore&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In the primary project under &lt;code&gt;Frameworks&lt;/code&gt; I removed the following dynamic libraries.  This automatically removes them from &lt;code&gt;Link Binary With Libraries&lt;/code&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;libz.tbd&lt;/li&gt;
+&lt;li&gt;libicucore.tbd&lt;/li&gt;
+&lt;li&gt;libc++.tbd&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Then in &lt;code&gt;Targets -&amp;gt; Build Settings&lt;/code&gt; under &lt;code&gt;Other Linker Flags&lt;/code&gt; I added...&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;-lc++&lt;/li&gt;
+&lt;li&gt;-lz&lt;/li&gt;
+&lt;li&gt;-licucore&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Issue 3&lt;/h2&gt;
+&lt;p&gt;I tried to run the app again on the device a received the following error&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/d4ec302d4b5aa25f620fb49aa6f2850f.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;ld: '/Users/atlatl/Library/Developer/Xcode/DerivedData/AnonymousXcodeProject-agyqsaalcxhpovfpwvqvdieajbmu/Build/Products/Debug-user-iphoneos/libIosCmn.a(uniMag.o)' does not contain bitcode. You must rebuild it with bitcode enabled (Xcode setting ENABLE_BITCODE), obtain an updated library from the vendor, or disable bitcode for this target. for architecture armv7
+clang: error: linker command failed with exit code 1 (use -v to see invocation)&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;p&gt;Under &lt;code&gt;Targets -&amp;gt; Build Settings&lt;/code&gt; I had to change the &lt;code&gt;Enable Bitcode&lt;/code&gt; option to no.&lt;/p&gt;
+&lt;p&gt;This now enabled me to build and run on the iOS device.  Also regression run of the app on older version in the simulator seem to work.&lt;/p&gt;
+&lt;p&gt;I should also mention that Xcode version 7.3.1 was available at the time but it did require a OS update to El Capitan (10.11).  Because Apple indicated several times in the 7.x builds they would fix the above issue I went ahead and tried the link option.&lt;/p&gt;</content><category term="notes"></category><category term="ios"></category><category term="xcode"></category></entry><entry><title>Android Studio Subversion</title><link href="http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2016/android-studio-subversion.html" rel="alternate"></link><published>2016-05-27T08:10:23-04:00</published><updated>2016-05-27T08:10:23-04:00</updated><author><name>Rg</name></author><id>tag:rossgodwin.github.io,2016-05-27:/v1.rossgodwin.com-src/blog/2016/android-studio-subversion.html</id><summary type="html">
+&lt;p&gt;You have a Android app you've developed using Eclipse IDE and is version controlled by Subversion.  You make the switch to Android Studio, the official IDE for Android, because the Eclipse ADT plugin is no longer supported.  You've performed the migration to Android Studio, which has required adapting to a new project structure and build system.  You are now ready to commit changes to your Android app project into SVN but you want to do so in a way that maintains the history of your files.
+&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Scenario&lt;/h2&gt;
+
+
+&lt;p&gt;You have a Android app you've developed using Eclipse IDE and is version controlled by Subversion.  You make the switch to Android Studio, the official IDE for Android, because the Eclipse ADT plugin is no longer supported.  You've performed the migration to Android Studio, which has required adapting to a new project structure and build system.  You are now ready to commit changes to your Android app project into SVN but you want to do so in a way that maintains the history of your files.
+&lt;/p&gt;
+&lt;p&gt;The below tutorial will help folks update an existing versioned Android project based on the Eclipse ADT project structure to reflect Android Studio project structure.  It also explains what project folders and files should be included and excluded in versioning.&lt;/p&gt;
+&lt;p&gt;For this tutorial I'm using Subversion and TortoiseSVN Windows client.&lt;/p&gt;
+&lt;h2&gt;TortoiseSVN&lt;/h2&gt;
+&lt;p&gt;A quick note on how to move versioned folders and files in Windows Explorer and maintain history using TortoiseSVN.  Right-click the folder that is being moved and (while holding right-click) drag to the destination folder, for this tutorial I'm referring to this as a right-click-drag.  A context menu will appear with several options by TortoiseSVN.  Choose &lt;code&gt;SVN Move versioned item(s) here&lt;/code&gt;.  Note that some versioned files displaying with a green checkmark by TortoiseSVN may display with a blue plus symbol after being moved using TortoiseSVN.  This is ok and the file will have its history maintained, the blue plus just indicates its new in the context of this folder.&lt;/p&gt;
+&lt;h2&gt;Exclude from versioning&lt;/h2&gt;
+&lt;p&gt;Below are Android Studio and build related folders and files to exclude from version control.  In the below steps, these will be added to the ignore list.&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/bcd98e1e4d28be3125280a04dd6032f2.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;.gradle/
+.idea/
+{project module}/build/
+{project module}/{project module}.iml
+Build
+{project}.iml
+local.properties&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;h2&gt;Steps&lt;/h2&gt;
+&lt;h3&gt;Step 1&lt;/h3&gt;
+&lt;p&gt;Tag the current version of the project in trunk such that it indicates its the final version from eclipse i.e. &lt;strong&gt;final_eclipse&lt;/strong&gt;.  This can be done using the &lt;code&gt;Copy to...&lt;/code&gt; in TortoiseSVN repository browser.&lt;/p&gt;
+&lt;h3&gt;Step 2&lt;/h3&gt;
+&lt;p&gt;Check out the project from SVN trunk to your local machine.&lt;/p&gt;
+&lt;h3&gt;Step 3&lt;/h3&gt;
+&lt;p&gt;Copy the files and folders under the Android Studio root project folder to the SVN trunk folder checked out in step 2, there should be no conflicts/overrides.&lt;/p&gt;
+&lt;h3&gt;Step 4&lt;/h3&gt;
+&lt;p&gt;Delete the following folders brought over from the Android Studio project as they will be replaced by the corresponding versioned folders.&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/490b03bdd04527e6341325970c07baec.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;{project module}/build/
+{project module}/libs/
+{project module}/src/&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;h3&gt;Step 5&lt;/h3&gt;
+&lt;p&gt;Add just the &lt;code&gt;{project module}&lt;/code&gt; folder to SVN.  Right-click the folder and from the context menu choose the TortoiseSVN option &lt;code&gt;Add...&lt;/code&gt;.  Note you may have to uncheck the &lt;code&gt;{project module}.iml&lt;/code&gt; and &lt;code&gt;build.gradle&lt;/code&gt; files.&lt;/p&gt;
+&lt;h3&gt;Step 6&lt;/h3&gt;
+&lt;p&gt;Move the versioned src folder to the &lt;code&gt;{project module}&lt;/code&gt; folder.  Right-click-drag src to &lt;code&gt;{project module}&lt;/code&gt; and from the context menu choose &lt;code&gt;SVN Move versioned item(s) here&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;Step 7&lt;/h3&gt;
+&lt;p&gt;Move the versioned libs folder to &lt;code&gt;{project module}&lt;/code&gt; folder.  Right-click-drag libs to &lt;code&gt;{project module}&lt;/code&gt; and from the context menu choose &lt;code&gt;SVN Move versioned item(s) here&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;Step 8&lt;/h3&gt;
+&lt;p&gt;Under &lt;code&gt;{project module}/src&lt;/code&gt; create the following folders:&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/287b363befeebed07ad7d8a6e2da5b33.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;main/
+main/java/&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;h3&gt;Step 9&lt;/h3&gt;
+&lt;p&gt;Add the new folders from step 8 to version control. On the main folder, right-click and from the context menu choose the TortoiseSVN option &lt;code&gt;Add...&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;Step 10&lt;/h3&gt;
+&lt;p&gt;Move the versioned java src folder.  Right-click-drag &lt;code&gt;{project module}/src/com&lt;/code&gt; to &lt;code&gt;{project module}/src/main/java&lt;/code&gt; and from the context menu choose &lt;code&gt;SVN Move versioned item(s) here&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;Step 11&lt;/h3&gt;
+&lt;p&gt;Move the versioned assets folder.  Right-click-drag assets to &lt;code&gt;{project module}/src/main&lt;/code&gt; and from the context menu choose &lt;code&gt;SVN Move versioned item(s) here&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;Step 12&lt;/h3&gt;
+&lt;p&gt;Move the versioned res folder.  Right-click-drag res to &lt;code&gt;{project module}/src/main&lt;/code&gt; and from the context menu choose &lt;code&gt;SVN Move versioned item(s) here&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;Step 13&lt;/h3&gt;
+&lt;p&gt;Move the versioned AndroidManifest.xml file.  Right-click-drag AndroidManifest.xml to &lt;code&gt;{project module}/src/main&lt;/code&gt; and from the context menu choose &lt;code&gt;SVN Move versioned item(s) here&lt;/code&gt;.&lt;/p&gt;
+&lt;h3&gt;Step 14&lt;/h3&gt;
+&lt;p&gt;Add the following folders and files to version control.  Right-click the folder or file and from the context menu choose the TortoiseSVN option &lt;code&gt;Add...&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/42a982d2e5b3f76f9a4702b91acbeaf7.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;gradle/ (not to be confused with .gradle)
+build.gradle
+gradlew
+gradlew.bat
+proguard-project.txt (if it is not already versioned)
+project.properties (if it is not already versioned)
+settings.gradle
+{project module}/build.gradle&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;h3&gt;Step 15&lt;/h3&gt;
+&lt;p&gt;Above I mentioned folders and files to exclude from versioning.  You could delete these to exclude them from version control but because some of these will be regenerated by the Android Studio environment I went ahead and added them to the ignore list.  To do so, right-click and from the context menu choose the TortoiseSVN option &lt;code&gt;Add to ignore list&lt;/code&gt; then choose the recursive option for folders.  Add the following to the ignore list:&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/50b223484fa4a97420ca6d444db855d5.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;.gradle/
+.idea/
+{project module}/build/
+{project module}/{project module}.iml
+Build
+{project}.iml
+local.properties&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;h3&gt;Step 16&lt;/h3&gt;
+&lt;p&gt;Commit your changes (again just make sure you have tagged trunk...see step 1).&lt;/p&gt;
+&lt;p&gt;After committing you can go in and see revision ids, original author, log history, etc was maintained for original versioned files!&lt;/p&gt;</content><category term="notes"></category><category term="android"></category><category term="android studio"></category><category term="intellij"></category><category term="eclipse"></category><category term="svn"></category><category term="subversion"></category><category term="tortoisesvn"></category></entry><entry><title>JBoss4 Quartz 2.2x Setup</title><link href="http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2015/jboss4-quartz-22x-setup.html" rel="alternate"></link><published>2015-12-18T11:10:23-04:00</published><updated>2015-12-18T11:10:23-04:00</updated><author><name>Rg</name></author><id>tag:rossgodwin.github.io,2015-12-18:/v1.rossgodwin.com-src/blog/2015/jboss4-quartz-22x-setup.html</id><summary type="html">&lt;p&gt;This explains how to setup Quartz scheduler with JBoss4.&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Step 1&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;quartz-2.2.1-distribution.zip\quartz-2.2.1\lib&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Place the jar files in your project under &lt;code&gt;WEB-INF/lib&lt;/code&gt;.  Make sure the same jar files but with different versioning does not already exist.&lt;/p&gt;
+&lt;h2&gt;Step 2&lt;/h2&gt;
+&lt;p&gt;Remove quartz jar files that came with jboss to avoid version conflict on server startup&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/fcb9851a820b1ccea6daac3eef32f6bb.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;JBOSS_HOME\server\default\deploy\quartz-ra.rar
+JBOSS_HOME\server\default\lib\quartz.jar&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;h2&gt;Step 3&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;quartz.properties&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;I placed mine in &lt;code&gt;JBOSS_HOME\bin\conf&lt;/code&gt;.  The documentation also specifies you can place it under &lt;code&gt;WEB-INF&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/9f08014e03d372d30ff533ff76c34c33.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;org.quartz.scheduler.instanceName=AppScheduler
+org.quartz.threadPool.threadCount=3
+org.quartz.threadPool.class=org.quartz.simpl.SimpleThreadPool
+
+org.quartz.jobStore.class=org.quartz.impl.jdbcjobstore.JobStoreTX
+org.quartz.jobStore.driverDelegateClass=org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+org.quartz.jobStore.useProperties=false
+org.quartz.jobStore.tablePrefix=QRTZ_
+org.quartz.jobStore.dataSource=myDS
+
+org.quartz.dataSource.myDS.jndiURL=java:/{name of datasource}&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;h2&gt;Step 4&lt;/h2&gt;
+&lt;p&gt;Under &lt;code&gt;{QUARTZ Root}\docs\dbTables&lt;/code&gt; they provide the table creation scripts for several databases.  Go ahead and create the tables for your database.&lt;/p&gt;
+&lt;h2&gt;Step 5&lt;/h2&gt;
+&lt;p&gt;I initialized the scheduler within a &lt;a href="http://quartz-scheduler.org/documentation/quartz-2.2.x/cookbook/ServletInitScheduler" target="_blank"&gt;servlet container&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Step 6&lt;/h2&gt;
+&lt;p&gt;Do you need to use hibernate in your implementation of &lt;code&gt;org.quartz.Job&lt;/code&gt;?&lt;/p&gt;
+&lt;p&gt;If so then start a transaction.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;HibernateSessionFactory.getSessionFactory().getCurrentSession().beginTransaction();&lt;/code&gt;&lt;/p&gt;
+&lt;h2&gt;Step 7&lt;/h2&gt;
+&lt;p&gt;Remember to handle misfires&lt;/p&gt;
+&lt;p&gt;According to Quartz documentation "A misfire occurs if a persistent trigger "misses" its firing time because of the scheduler being shutdown (in our case maybe a server restart), or because there are no available threads in Quartz's thread pool for executing the job."&lt;/p&gt;
+&lt;p&gt;I've set the misfire instruction to fire now so when the scheduler is restarted or a thread becomes available the trigger should immediately fire.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://quartz-scheduler.org/documentation/quartz-2.x/tutorials/tutorial-lesson-04" target="_blank"&gt;Triggers&lt;/a&gt;&lt;/p&gt;</content><category term="notes"></category><category term="jboss"></category><category term="quartz"></category></entry><entry><title>EMV Cards</title><link href="http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2015/emv-cards.html" rel="alternate"></link><published>2015-09-08T11:10:23-04:00</published><updated>2015-09-08T11:10:23-04:00</updated><author><name>Rg</name></author><id>tag:rossgodwin.github.io,2015-09-08:/v1.rossgodwin.com-src/blog/2015/emv-cards.html</id><summary type="html">&lt;p&gt;The following are some notes I took while doing research on EMV cards.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;The following are some notes I took while doing research on EMV cards.&lt;/p&gt;
+
+
+&lt;h2&gt;EMV - Europay, MasterCard and Visa (aka chip card, smart card, etc)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;cards equipped with computer chips and the technology used to authenticate chip-card transactions making retail shopping more secure&lt;/li&gt;
+&lt;li&gt;magnetic strips will remain unchanged, whoever accesses that data gains sensitive card information&lt;/li&gt;
+&lt;li&gt;every time a EMV card is used, the card chip creates a unique transaction ID to every purchase, that unique ID cannot be used again&lt;ul&gt;
+&lt;li&gt;If a hacker stole the chip information from one specific point of sale, typical card duplication would never work "because the stolen transaction number created in that instance wouldn't be usable again and the card would just get denied," Witts says.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Chip cards don't eliminate the problem of fraud. In particular, these cards still have numbers, expiry dates, and three-digit codes on their backs. Someone could copy this information and use it to make purchases online. A chip-and-signature card could be used at a point-of-sale terminal along with a forged signature. The magnetic strip can still be used in the old way at many terminals around the world.&lt;ul&gt;
+&lt;li&gt;But, although chip cards won't eliminate all fraud, they will make fraud more difficult. This will also help prevent future breaches of payment systems - like the one that happened at Target - from being so damaging.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;No longer just card swiping&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;card dipping&lt;ul&gt;
+&lt;li&gt;inserted into a terminal slot; card legitimacy verified and unique transaction data created&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;contactless transactions; near field communication (NFC)&lt;ul&gt;
+&lt;li&gt;tap against a terminal scanner&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;financial institutions are issuing contact cards (for card dipping)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Enter a PIN?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;a PIN connects the payment terminal to the payment processor for real-time transaction verification and approval&lt;ul&gt;
+&lt;li&gt;many payment processors are not equipped with the technology to handle EMV chip-and-PIN credit transactions&lt;/li&gt;
+&lt;li&gt;many issuers will just be issuing chip-and-signature cards&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Fraud liability&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;currently, if an in-store transaction is conducted using a counterfeit or compromised card, consumer losses from that transaction fall back on the payment processor&lt;/li&gt;
+&lt;li&gt;after October 1, 2015 the liability will shift to whichever party is least EMV-compliant in a fraudulent transaction&lt;/li&gt;
+&lt;li&gt;merchant responsible&lt;ul&gt;
+&lt;li&gt;If a consumer presents a chip card at a merchant that does not have EMV-enabled equipment, the liability for credit card fraud will shift to the merchant&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;card issuer responsible&lt;ul&gt;
+&lt;li&gt;If a traditional magstripe card is presented at an EMV-enabled terminal, the card issuer will be responsible for any financial liability resulting from fraudulent transactions&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;while compliance is not mandatory, card issuers are bringing people on board with EMV by encouraging compliance to avoid liability costs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Chip-card retailer support&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The first round of EMV cards -- many of which are already in consumers' hands -- will be equipped with both chip and magnetic-stripe functions so consumer spending is not disrupted and merchants can adjust.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;EMV payment options in online world&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;MasterCard - Chip Authenticated Program (CAP)&lt;/li&gt;
+&lt;li&gt;Visa - Dynamic Passcode Authentication (DPA)&lt;/li&gt;
+&lt;li&gt;Many e-commerce stores throughout Europe have already begun using these two EMV security features with their own online customers. And they could soon become mandatory for e-stores in the Americas.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Card-not-present (CNP) merchants&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;CNP merchants will see a rise in fraudulent transactions as thieves migrate towards least secure channels&lt;ul&gt;
+&lt;li&gt;"In the United Kingdom, online fraud -- known in the industry as 'card not present,' or CNP, fraud -- rose 79 percent in the first three years after the country switched to chip cards, and it more than doubled in Australia and Canada, according to Aite Group."&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Senior Payment Analyst at Javelin Strategy &amp;amp; Research. "CNP fraud cannot be underestimated in growth or expense."&lt;/li&gt;
+&lt;li&gt;Javelin predicts CNP fraud in the U.S. to be nearly four times greater than fraud at the POS by 2018, simply because of the explosive growth expected in the number of e-commerce transactions&lt;ul&gt;
+&lt;li&gt;While the U.S. migration to EMV is expected to curb card present fraud, experts are predicting that it may lead to an increase in card not present fraud- when the UK migrated to EMV in 2004 and 2005, online CNP fraud increased from  $184 million in 2005 when EMV was fully implemented to $283 million in 2007.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;So how can you protect your customers and your business? Using AVS (Address Verification) and CVV (Card Validation Values or security code) are definitely steps in the right direction.  &lt;a href="https://www.bluepay.com/payment-processing/pci-compliance/fraud-management-tools/" target="_blank"&gt;Other fraud management tools&lt;/a&gt;:&lt;ul&gt;
+&lt;li&gt;On-hold functionality&lt;/li&gt;
+&lt;li&gt;Velocity filter&lt;/li&gt;
+&lt;li&gt;Threshold&lt;/li&gt;
+&lt;li&gt;AVS&lt;/li&gt;
+&lt;li&gt;CVV&lt;/li&gt;
+&lt;li&gt;Card Issuing Country&lt;/li&gt;
+&lt;li&gt;Geo IP Tracking&lt;/li&gt;
+&lt;li&gt;Negative Database&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</content><category term="notes"></category><category term="emv cards"></category></entry><entry><title>GXT3 window masked behind GXT2 window</title><link href="http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2014/gxt3-window-masked-behind-gxt2-window.html" rel="alternate"></link><published>2014-08-29T11:10:23-04:00</published><updated>2014-08-29T11:10:23-04:00</updated><author><name>Rg</name></author><id>tag:rossgodwin.github.io,2014-08-29:/v1.rossgodwin.com-src/blog/2014/gxt3-window-masked-behind-gxt2-window.html</id><summary type="html">
+&lt;p&gt;I ran into a little issue at work today and wanted to enter a brief write up on it. One of our web application's user interface is built on Sencha's GXT3 (com.sencha) and GXT2 (com.extjs) frameworks. Our new and improved UI uses GXT3 and we maintained legacy layouts and components (developed using GXT2) to permit a transition period for established users.
+&lt;/p&gt;</summary><content type="html">
+
+&lt;p&gt;I ran into a little issue at work today and wanted to enter a brief write up on it. One of our web application's user interface is built on Sencha's GXT3 (com.sencha) and GXT2 (com.extjs) frameworks. Our new and improved UI uses GXT3 and we maintained legacy layouts and components (developed using GXT2) to permit a transition period for established users.
+
+As a general rule, we are not adding new features to the legacy UI and really aren't supporting that anymore. However in my case today I just finished developing a feature enhancement which was written in GXT3. This included a new presenter (MVP design pattern) and some new GXT3 components, a window being one of them. Because this new component did everything the component in the old layout did, I was thinking I'd do a little code refactoring and replace the GXT2 components with the new GXT3 components. That way I could remove some old deprecated code and clean up the package structure a little, and users still on the legacy UI would have access to this enhancement. Win, win. Generally when I add a GXT3 component to a GXT2 view I'll perform GWT code splitting to reduce the amount of code needed to be brought down on entry point load. Below is a little snippet.&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/b1e4ecd44c3e96e471a64c38d044d1e1.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;GWT.runAsync(new RunAsyncCallback() {
+  public void onSuccess() {
+    // GXT3 code here
+    // i.e. new Prsntr().go();
+  }
+  
+  public void onFailure(Throwable caught) {
+  }
+});&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;p&gt;I located the old GXT2 component which happened to be launched from another GXT2 window and plugged in the new GXT3 presenter. I go to test, open the GXT2 window to click a button that would launch my new component and bam...my window stack is messed up. The GXT3 window opens but is masked behind the GXT2 window. To summarize the situation, I'm trying to launch 2 windows from 2 different GXT code environments. My first futile attempt to fix this involved changing the z-index value for both components. After digging around some, I found that both GXT environments have their own z-index management &lt;code&gt;XDOM.getTopZIndex()&lt;/code&gt;. So the problem was that these 2 windows don't know anything about each other and thus the window display queue is incorrect. Turns out this is a documented bug by Sencha (EXTGWT-2994) and their fix is to allow the developer to wire the z-index code to a different source. This enables the GXT3 framework z-index to use the GXT2's z-index. Now the ideal solution is to migrate the GXT2 components to GXT3, but that can be a slow process and low priority when you have a lot of irons in the fire.&lt;/p&gt;
+&lt;p&gt;If you decide to overwrite GXT3's z-index handling, here is a couple of snippets of code I found from a GXT dev team member.&lt;/p&gt;
+&lt;p&gt;Subclass &lt;code&gt;XDOMImpl&lt;/code&gt; and place in your package somewhere:&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/a3e9a4b2a04d1970d0a9ff38212e602f.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;public class Gxt2ZIndexXDOM extends com.sencha.gxt.core.client.dom.XDOM.XDOMImpl {
+  public int getTopZIndex(int i) {
+    return com.extjs.gxt.ui.client.core.XDOM.getTopZIndex(i);
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;p&gt;Then in the &lt;code&gt;.gwt.xml&lt;/code&gt; file, bind this new class to the GXT3 default usage like so:&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/5f0e17ce03762dde26af843e01123a11.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;&lt;replace-with class="path.to.my.Gxt2ZIndexXDOM"&gt;
+  &lt;when-type-is class="com.sencha.gxt.core.client.dom.XDOM.XDOMImpl" /&gt;
+&lt;/replace-with&gt;&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;p&gt;The &lt;code&gt;XDOMImpl&lt;/code&gt; class is part of Sencha's 3.1 release (release notes) so if you are on a older version of GXT you will need to upgrade. Be aware of any "Breaking" API changes depending on the version you are using.&lt;/p&gt;</content><category term="notes"></category><category term="sencha"></category><category term="gxt3"></category><category term="gxt2"></category></entry><entry><title>Lipo Batteries</title><link href="http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2014/lipo-batteries.html" rel="alternate"></link><published>2014-02-14T11:10:23-04:00</published><updated>2014-02-14T11:10:23-04:00</updated><author><name>Rg</name></author><id>tag:rossgodwin.github.io,2014-02-14:/v1.rossgodwin.com-src/blog/2014/lipo-batteries.html</id><summary type="html">
+&lt;p&gt;I bought a quad-copter drone and wanted to know a little more about their batteries and charging them.  So this post is derived from my research.
+&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Table of contents&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="#intro"&gt;Intro&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#voltage"&gt;Voltage or "S" rating&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#capactiy"&gt;Capacity or mAh rating&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#discharge"&gt;Discharge Rate or "C" rating&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#resistance"&gt;Internal Resistance&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#charging"&gt;Charging&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#connector"&gt;JST Battery Connector&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#charger"&gt;iMax B6 - LiPo Balance Charger&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#charging_notes"&gt;Charging Notes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#resources"&gt;Helpful Resources&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Intro &lt;a name="intro"&gt;&lt;/a&gt;&lt;/h3&gt;
+
+
+&lt;p&gt;I bought a quad-copter drone and wanted to know a little more about their batteries and charging them.  So this post is derived from my research.
+&lt;/p&gt;
+&lt;h3&gt;Voltage or "S" rating &lt;a name="voltage"&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;3.7 volts per cell, 4.2 when fully charged&lt;/li&gt;
+&lt;li&gt;Cell counts&lt;ul&gt;
+&lt;li&gt;3.7 volt battery = 1 cell x 3.7 volts (1S)&lt;/li&gt;
+&lt;li&gt;7.4 volt battery = 2 cells x 3.7 volts (2S)&lt;/li&gt;
+&lt;li&gt;11.1 volt battery = 3 cells x 3.7 volts (3S)&lt;/li&gt;
+&lt;li&gt;...and so on&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Battery packs can be wired in parallel to increase capacity&lt;ul&gt;
+&lt;li&gt;Example: 3S2P would indicate 2 x three celled series packs hooked up in parallel to double the capacity&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Capacity or mAh rating &lt;a name="capacity"&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;How much load (in milliamps) can be placed on the battery in 1 hour to fully discharge the battery&lt;ul&gt;
+&lt;li&gt;1000 mAh - would be fully discharged in 1 hour at 1000 mAh load&lt;/li&gt;
+&lt;li&gt;1000 mAh - would be fully discharged in 2 hours with 500 mAh load&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;To increase your runtime, increase the capacity&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Discharge Rate or "C" rating &lt;a name="discharge"&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;How fast a battery can be discharged safely&lt;ul&gt;
+&lt;li&gt;10C discharge rating - would discharge at a rate 10 times the capacity of the pack&lt;/li&gt;
+&lt;li&gt;15C pack - 15 times more&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;1000 mAh 10C - can pull a max load of 10000 milliamps&lt;ul&gt;
+&lt;li&gt;1000 / (10000 / 60) = 6 minutes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Discharge rate = 20C Continuous / 40C Bursts&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Internal Resistance &lt;a name="resistance"&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Best way to monitor the batteries condition - as the battery gets older, internal resitance increases&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Charging &lt;a name="charging"&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h4&gt;Maximum charge voltage and current&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;3.7 volt lipo battery cell is 100% charged when it reaches 4.2 volts&lt;/li&gt;
+&lt;li&gt;A computerized charger will stop charging when 4.2 volts is reached, a balanced charger will do this for each cell&lt;/li&gt;
+&lt;li&gt;On a 2 cell (2S) pack, you must select 7.4 volts or 2 cells on the charger&lt;/li&gt;
+&lt;li&gt;Most good LiPo battery chargers use constant current/constant voltage charging method.  As the battery voltage closes in on the 100% charge voltage, the charger will automatically start reducing the charge current and then apply a constant voltage.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Charging current&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Use to be, never charge a LiPo or Li-Ion pack greater than 1 times its capacity (1C)&lt;ul&gt;
+&lt;li&gt;2000 mAh pack, would be charged at maximum charge current of 2000 mAh or 2 amps&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Now, experts say you can safely charge at 2C or even 3C rate that have a discharge rating of 20C or more&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Battery Balancing&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Ensures all cells are always within 0.01-0.03 volts per cell&lt;/li&gt;
+&lt;li&gt;Balancing is required on battery packs with more than one cell&lt;/li&gt;
+&lt;li&gt;3S pack&lt;ul&gt;
+&lt;li&gt;11.1 volt battery pack (3.7 volts per cell x 3 = 11.1 volts)&lt;/li&gt;
+&lt;li&gt;100% charge voltage 12.6 volts (4.2 volts x 3 = 12.6 volts)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Discharging&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Purpose is to clean residual capacity of the battery, or reduce the battery voltage to a defined level&lt;/li&gt;
+&lt;li&gt;Generally, a lithium battery does not need to be discharged&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;JST Battery Connector &lt;a name="connector"&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Rated for up to 5 amps of continuous load&lt;/li&gt;
+&lt;li&gt;Used on smaller battery packs (usually under 1500 mAh)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;iMax B6 - LiPo Balance Charger &lt;a name="charger"&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Connect the charge cable to the charger first, then connect to battery.  Reverse sequence when disconnecting&lt;/li&gt;
+&lt;li&gt;Do not connect a battery fitted with an integral charge circuit or a protection circuit&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Charging Notes &lt;a name="charging_notes"&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;h4&gt;Note 1&lt;/h4&gt;
+&lt;p&gt;Just keep in mind that you are not controlling the balancing of the individual 1S batteries when parallel charging like you are when charging a 6S battery on your charger with it connected to your balancer adapter - you are in effect "wiring them all together" so they will have a tendancy to balance against one another (sort of like if you had 6 buckets of water and a hose at the bottom of each bucket connecting them all together... they will eventually equalize amongst themselves) but you want to start with each cell close to each other (close in its starting charge state, i.e. all close to 20% capacity or 30% etc.) you can test them with a 1S lipo tester or a meter. &lt;/p&gt;
+&lt;p&gt;IF for instance you had 4 1S cells at 60 or 70% and 2 at 20%, when connected in parallel, the 4 would effectively "charge" the 2 quite possibly at greater than thier rated charge rate as they equalize amongst themselves.&lt;/p&gt;
+&lt;p&gt;Going back to the 6S pack connected to your charger and to the balancer adapter, two significant things are happening different from the 1S's in parallel;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;the 6 individual cells that make up the 6S pack (or 3 cells in a 3S etc) are being drained at a very similar rate as the battery is being used, so all 6 cells will be at close to the same % of discharge at the end of a flight (not more than the recommended 20% if you timed your flight right!)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;when you connect the 6S to your charger (the red/black leads with the deans or whatever connector you use) and then the smaller plug to the balance adapter, the charger is reading each cell individually through the balance adapter and charging each cell back to capacity, matiching or BALANCING each cell to the other 5 as it goes (the whole point of a balancing charger). Most chargers will show you this in one of the menu displays as they charge as well as the variance between the least charged cell and the most charged cell. If after flight or during/after charging you have a significant variance between the least and the greatest, you have a problem with that battery.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;Note 2&lt;/h4&gt;
+&lt;p&gt;&lt;a href="http://www.rchelicopterfun.com/parallel-lipo-charging.html" target="_blank"&gt;rchelicopterfun.com&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;Note 3&lt;/h4&gt;
+&lt;p&gt;&lt;a href="http://helidirect.com/hyperion-6-port-parallel-charge-adapter-for-1s-um-lipoly-p-18642.hdx" target="_blank"&gt;helidirect.com&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;Note 4&lt;/h4&gt;
+&lt;p&gt;&lt;a href="http://www.rcgroups.com/forums/showthread.php?t=1604502" target="_blank"&gt;rcgroups.com&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Helpful Resources &lt;a name="resources"&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.icharger.co.nz/articles/ArticleId/6/Introduction-To-Lipo-Batteries.aspx" target="_blank"&gt;icharger.co.nz&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="notes"></category><category term="lipo"></category><category term="batteries"></category></entry></feed>

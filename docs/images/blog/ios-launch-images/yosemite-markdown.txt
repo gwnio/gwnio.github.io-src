@@ -1,0 +1,22 @@
+Device | | Size | Source Image Size | Filename
+---|---|---|---|---
+iPhone Portrait iOS 8 | Retina HD 5.5 | | |
+iPhone Portrait iOS 8 | Retina HD 4.7 | | |
+iPhone Landscape iOS 8 | Retina HD 5.5 | | |
+iPhone Portrait iOS 7,8 | 2x | 640x1136 | |
+iPhone Portrait iOS 7,8 | Retina 4 | 640x1136 | |
+iPad Portrait iOS 7,8 | 1x | 768x1024 | |
+iPad Portrait iOS 7,8 | 2x | 1536x2048 | |
+iPad Landscape iOS 7,8 | 1x | 1024x768 | |
+iPad Landscape iOS 7,8 | 2x | 2048x1536 | |
+iPhone Portrait iOS 5,6 | 1x | | |
+iPhone Portrait iOS 5,6 | 2x | | |
+iPhone Portrait iOS 5,6 | Retina 4 | | |
+iPad Portrait Without Status Bar iOS 5,6 | 1x | | |
+iPad Portrait Without Status Bar iOS 5,6 | 2x | | |
+iPad Portrait iOS 5,6 | 1x | | |
+iPad Portrait iOS 5,6 | 2x | | |
+iPad Landscape Without Status Bar iOS 5,6 | 1x | | |
+iPad Landscape Without Status Bar iOS 5,6 | 2x | | |
+iPad Landscape iOS 5,6 | 1x | | |
+iPad Landscape iOS 5,6 | 2x | | |

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"><channel><title>@rossgodwin - myfaces</title><link>http://rossgodwin.github.io/v1.rossgodwin.com-src/</link><description></description><lastBuildDate>Wed, 14 Jun 2017 11:10:23 -0400</lastBuildDate><item><title>Wildfly JSF Configuration</title><link>http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2017/wildfly-jsf-configuration.html</link><description>
+&lt;p&gt;The following is documentation for adding Mojarra or MyFaces JSF implementation as a subsystem in Wildfly 10.
+&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Rg</dc:creator><pubDate>Wed, 14 Jun 2017 11:10:23 -0400</pubDate><guid isPermaLink="false">tag:rossgodwin.github.io,2017-06-14:/v1.rossgodwin.com-src/blog/2017/wildfly-jsf-configuration.html</guid><category>notes</category><category>wildfly</category><category>jsf</category><category>myfaces</category></item></channel></rss>

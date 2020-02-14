@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<title>Android Studio Subversion - @rossgodwin</title>
+	<meta name="description" content="You have a Android app you've developed using Eclipse IDE and is version controlled by Subversion. You make the switch to Android Studio, the official IDE for Android, because the Eclipse ADT plugin is no longer supported. You've performed the migration to Android Studio, which has required adapting to a new project structure and build system. You are now ready to commit changes to your Android app project into SVN but you want to do so in a way that maintains the history of your files."/>
+	
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<meta name="dc.language" content="en" />
+	<meta name="dc.license" content="">
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Android Studio Subversion - @rossgodwin" />
+	<meta property="og:description" content="You have a Android app you've developed using Eclipse IDE and is version controlled by Subversion. You make the switch to Android Studio, the official IDE for Android, because the Eclipse ADT plugin is no longer supported. You've performed the migration to Android Studio, which has required adapting to a new project structure and build system. You are now ready to commit changes to your Android app project into SVN but you want to do so in a way that maintains the history of your files." />
+	<meta property="og:url" content="http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2016/android-studio-subversion.html" />
+	<meta property="og:site_name" content="@rossgodwin" />
+
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Android Studio Subversion - @rossgodwin" />
+	<meta name="twitter:description" content="You have a Android app you've developed using Eclipse IDE and is version controlled by Subversion. You make the switch to Android Studio, the official IDE for Android, because the Eclipse ADT plugin is no longer supported. You've performed the migration to Android Studio, which has required adapting to a new project structure and build system. You are now ready to commit changes to your Android app project into SVN but you want to do so in a way that maintains the history of your files." />
+	<meta name="twitter:domain" content="rossgodwin.github.io/v1.rossgodwin.com-src">
+	<meta name="tag" content="android">
+	<meta name="tag" content="android-studio">
+	<meta name="tag" content="intellij">
+	<meta name="tag" content="eclipse">
+	<meta name="tag" content="svn">
+	<meta name="tag" content="subversion">
+	<meta name="tag" content="tortoisesvn">
+
+		<link href="http://rossgodwin.github.io/v1.rossgodwin.com-src/feeds/all.xml" type="application/atom+xml" rel="alternate" title="@rossgodwin Full Atom Feed" />
+	<link href="http://rossgodwin.github.io/v1.rossgodwin.com-src/feeds/notes.xml" type="application/atom+xml" rel="alternate" title="@rossgodwin Categories Atom Feed" />
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="http://rossgodwin.github.io/v1.rossgodwin.com-src/theme/css/style.css" type="text/css">
+	
+</head>
+
+<body class="w3-light-grey">
+	<div class="w3-bar w3-black" id="my-topbar">
+		<a href="javascript:void(0);" class="w3-bar-item w3-button my-topbar-menu-button" onclick="topbarMenuButtonClickHandler()"><i class="fa fa-bars"></i></a>
+		<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/index.html" class="w3-bar-item w3-button"><i class="fa fa-home"></i></a>
+		<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/blog" class="w3-bar-item w3-button"><b>Blog</b></a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/archives/" class="w3-bar-item w3-button"><b>Archives</b></a>
+	</div>
+	
+
+	<header class="w3-container w3-center w3-padding-48 w3-white">
+		<h1 class="w3-xxxlarge"><b>@rossgodwin</b></h1>
+		<h6>Just documenting some things as I encounter <span class="w3-tag">...</span></h6>
+	</header>
+
+	
+	<div class="w3-content" style="max-width:1600px">
+
+	<div class="w3-row">
+   		<div class="w3-col l8 s12 w3-padding">
+   			<div class="w3-white">
+				<div class="w3-container">
+					<h3>Android Studio Subversion</h3>
+<div class="article_meta">
+		<span class="w3-tag w3-text-white">May 27, 2016</span>
+		<span>Filed under <a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/category/notes/">notes</a></span>
+		<span>
+				<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/android/">#android</a>
+				<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/android-studio/">#android studio</a>
+				<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/eclipse/">#eclipse</a>
+				<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/intellij/">#intellij</a>
+				<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/subversion/">#subversion</a>
+				<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/svn/">#svn</a>
+				<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/tortoisesvn/">#tortoisesvn</a>
+		</span>
+<span><a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2016/android-studio-subversion.txt">Markdown source</a></span></div>					
+<div class="w3-row w3-margin w3-center">
+	<div class=w3-hide-small>
+		<a href="http://www.facebook.com/sharer.php?u=http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2016/android-studio-subversion.html" title="Share on Facebook" class="w3-button w3-border w3-button-facebook" target="_blank"><i class="fa fa-facebook w3-margin-right"></i><b>Facebook</b></a>
+		<a href="https://twitter.com/share?url=http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2016/android-studio-subversion.html&text=You have a Android app you've developed using Eclipse IDE and is version controlled by Subversion. You make the switch to Android Studio, the official IDE for Android, because the Eclipse ADT plugin is no longer supported. You've performed the migration to Android Studio, which has required adapting to a new project structure and build system. You are now ready to commit changes to your Android app project into SVN but you want to do so in a way that maintains the history of your files." title="Share on Twitter" class="w3-button w3-border w3-button-twitter" target="_blank"><i class="fa fa-twitter w3-margin-right"></i><b>Twitter</b></a>
+		<a href="https://plus.google.com/share?url=http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2016/android-studio-subversion.html" title="Share on Google+" class="w3-button w3-border w3-button-google-plus" target="_blank"><i class="fa fa-google-plus w3-margin-right"></i><b>Google</b></a>
+	</div>
+	<div class="w3-hide-large w3-hide-medium">
+		<a href="http://www.facebook.com/sharer.php?u=http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2016/android-studio-subversion.html" title="Share on Facebook" class="w3-button w3-border w3-padding-medium w3-button-facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/share?url=http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2016/android-studio-subversion.html&text=You have a Android app you've developed using Eclipse IDE and is version controlled by Subversion. You make the switch to Android Studio, the official IDE for Android, because the Eclipse ADT plugin is no longer supported. You've performed the migration to Android Studio, which has required adapting to a new project structure and build system. You are now ready to commit changes to your Android app project into SVN but you want to do so in a way that maintains the history of your files." title="Share on Twitter" class="w3-button w3-border w3-padding-medium w3-button-twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://plus.google.com/share?url=http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2016/android-studio-subversion.html" title="Share on Google+" class="w3-button w3-border w3-padding-medium w3-button-google-plus" target="_blank"><i class="fa fa-google-plus"></i></a>
+	</div>
+</div>					
+					<div class="article_content">
+						<h2>Scenario</h2>
+
+
+<p>You have a Android app you've developed using Eclipse IDE and is version controlled by Subversion.  You make the switch to Android Studio, the official IDE for Android, because the Eclipse ADT plugin is no longer supported.  You've performed the migration to Android Studio, which has required adapting to a new project structure and build system.  You are now ready to commit changes to your Android app project into SVN but you want to do so in a way that maintains the history of your files.
+</p>
+<p>The below tutorial will help folks update an existing versioned Android project based on the Eclipse ADT project structure to reflect Android Studio project structure.  It also explains what project folders and files should be included and excluded in versioning.</p>
+<p>For this tutorial I'm using Subversion and TortoiseSVN Windows client.</p>
+<h2>TortoiseSVN</h2>
+<p>A quick note on how to move versioned folders and files in Windows Explorer and maintain history using TortoiseSVN.  Right-click the folder that is being moved and (while holding right-click) drag to the destination folder, for this tutorial I'm referring to this as a right-click-drag.  A context menu will appear with several options by TortoiseSVN.  Choose <code>SVN Move versioned item(s) here</code>.  Note that some versioned files displaying with a green checkmark by TortoiseSVN may display with a blue plus symbol after being moved using TortoiseSVN.  This is ok and the file will have its history maintained, the blue plus just indicates its new in the context of this folder.</p>
+<h2>Exclude from versioning</h2>
+<p>Below are Android Studio and build related folders and files to exclude from version control.  In the below steps, these will be added to the ignore list.</p>
+<div class="gist">
+    <script src='https://gist.github.com/bcd98e1e4d28be3125280a04dd6032f2.js'></script>
+    <noscript>
+        <pre><code>.gradle/
+.idea/
+{project module}/build/
+{project module}/{project module}.iml
+Build
+{project}.iml
+local.properties</code></pre>
+    </noscript>
+</div>
+<h2>Steps</h2>
+<h3>Step 1</h3>
+<p>Tag the current version of the project in trunk such that it indicates its the final version from eclipse i.e. <strong>final_eclipse</strong>.  This can be done using the <code>Copy to...</code> in TortoiseSVN repository browser.</p>
+<h3>Step 2</h3>
+<p>Check out the project from SVN trunk to your local machine.</p>
+<h3>Step 3</h3>
+<p>Copy the files and folders under the Android Studio root project folder to the SVN trunk folder checked out in step 2, there should be no conflicts/overrides.</p>
+<h3>Step 4</h3>
+<p>Delete the following folders brought over from the Android Studio project as they will be replaced by the corresponding versioned folders.</p>
+<div class="gist">
+    <script src='https://gist.github.com/490b03bdd04527e6341325970c07baec.js'></script>
+    <noscript>
+        <pre><code>{project module}/build/
+{project module}/libs/
+{project module}/src/</code></pre>
+    </noscript>
+</div>
+<h3>Step 5</h3>
+<p>Add just the <code>{project module}</code> folder to SVN.  Right-click the folder and from the context menu choose the TortoiseSVN option <code>Add...</code>.  Note you may have to uncheck the <code>{project module}.iml</code> and <code>build.gradle</code> files.</p>
+<h3>Step 6</h3>
+<p>Move the versioned src folder to the <code>{project module}</code> folder.  Right-click-drag src to <code>{project module}</code> and from the context menu choose <code>SVN Move versioned item(s) here</code>.</p>
+<h3>Step 7</h3>
+<p>Move the versioned libs folder to <code>{project module}</code> folder.  Right-click-drag libs to <code>{project module}</code> and from the context menu choose <code>SVN Move versioned item(s) here</code>.</p>
+<h3>Step 8</h3>
+<p>Under <code>{project module}/src</code> create the following folders:</p>
+<div class="gist">
+    <script src='https://gist.github.com/287b363befeebed07ad7d8a6e2da5b33.js'></script>
+    <noscript>
+        <pre><code>main/
+main/java/</code></pre>
+    </noscript>
+</div>
+<h3>Step 9</h3>
+<p>Add the new folders from step 8 to version control. On the main folder, right-click and from the context menu choose the TortoiseSVN option <code>Add...</code>.</p>
+<h3>Step 10</h3>
+<p>Move the versioned java src folder.  Right-click-drag <code>{project module}/src/com</code> to <code>{project module}/src/main/java</code> and from the context menu choose <code>SVN Move versioned item(s) here</code>.</p>
+<h3>Step 11</h3>
+<p>Move the versioned assets folder.  Right-click-drag assets to <code>{project module}/src/main</code> and from the context menu choose <code>SVN Move versioned item(s) here</code>.</p>
+<h3>Step 12</h3>
+<p>Move the versioned res folder.  Right-click-drag res to <code>{project module}/src/main</code> and from the context menu choose <code>SVN Move versioned item(s) here</code>.</p>
+<h3>Step 13</h3>
+<p>Move the versioned AndroidManifest.xml file.  Right-click-drag AndroidManifest.xml to <code>{project module}/src/main</code> and from the context menu choose <code>SVN Move versioned item(s) here</code>.</p>
+<h3>Step 14</h3>
+<p>Add the following folders and files to version control.  Right-click the folder or file and from the context menu choose the TortoiseSVN option <code>Add...</code>:</p>
+<div class="gist">
+    <script src='https://gist.github.com/42a982d2e5b3f76f9a4702b91acbeaf7.js'></script>
+    <noscript>
+        <pre><code>gradle/ (not to be confused with .gradle)
+build.gradle
+gradlew
+gradlew.bat
+proguard-project.txt (if it is not already versioned)
+project.properties (if it is not already versioned)
+settings.gradle
+{project module}/build.gradle</code></pre>
+    </noscript>
+</div>
+<h3>Step 15</h3>
+<p>Above I mentioned folders and files to exclude from versioning.  You could delete these to exclude them from version control but because some of these will be regenerated by the Android Studio environment I went ahead and added them to the ignore list.  To do so, right-click and from the context menu choose the TortoiseSVN option <code>Add to ignore list</code> then choose the recursive option for folders.  Add the following to the ignore list:</p>
+<div class="gist">
+    <script src='https://gist.github.com/50b223484fa4a97420ca6d444db855d5.js'></script>
+    <noscript>
+        <pre><code>.gradle/
+.idea/
+{project module}/build/
+{project module}/{project module}.iml
+Build
+{project}.iml
+local.properties</code></pre>
+    </noscript>
+</div>
+<h3>Step 16</h3>
+<p>Commit your changes (again just make sure you have tagged trunk...see step 1).</p>
+<p>After committing you can go in and see revision ids, original author, log history, etc was maintained for original versioned files!</p>
+					</div>
+					
+<div class="w3-row w3-margin w3-center">
+	<div class=w3-hide-small>
+		<a href="http://www.facebook.com/sharer.php?u=http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2016/android-studio-subversion.html" title="Share on Facebook" class="w3-button w3-border w3-button-facebook" target="_blank"><i class="fa fa-facebook w3-margin-right"></i><b>Facebook</b></a>
+		<a href="https://twitter.com/share?url=http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2016/android-studio-subversion.html&text=You have a Android app you've developed using Eclipse IDE and is version controlled by Subversion. You make the switch to Android Studio, the official IDE for Android, because the Eclipse ADT plugin is no longer supported. You've performed the migration to Android Studio, which has required adapting to a new project structure and build system. You are now ready to commit changes to your Android app project into SVN but you want to do so in a way that maintains the history of your files." title="Share on Twitter" class="w3-button w3-border w3-button-twitter" target="_blank"><i class="fa fa-twitter w3-margin-right"></i><b>Twitter</b></a>
+		<a href="https://plus.google.com/share?url=http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2016/android-studio-subversion.html" title="Share on Google+" class="w3-button w3-border w3-button-google-plus" target="_blank"><i class="fa fa-google-plus w3-margin-right"></i><b>Google</b></a>
+	</div>
+	<div class="w3-hide-large w3-hide-medium">
+		<a href="http://www.facebook.com/sharer.php?u=http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2016/android-studio-subversion.html" title="Share on Facebook" class="w3-button w3-border w3-padding-medium w3-button-facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/share?url=http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2016/android-studio-subversion.html&text=You have a Android app you've developed using Eclipse IDE and is version controlled by Subversion. You make the switch to Android Studio, the official IDE for Android, because the Eclipse ADT plugin is no longer supported. You've performed the migration to Android Studio, which has required adapting to a new project structure and build system. You are now ready to commit changes to your Android app project into SVN but you want to do so in a way that maintains the history of your files." title="Share on Twitter" class="w3-button w3-border w3-padding-medium w3-button-twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://plus.google.com/share?url=http://rossgodwin.github.io/v1.rossgodwin.com-src/blog/2016/android-studio-subversion.html" title="Share on Google+" class="w3-button w3-border w3-padding-medium w3-button-google-plus" target="_blank"><i class="fa fa-google-plus"></i></a>
+	</div>
+</div>				</div>
+			</div>
+			
+			<div class="w3-margin-top w3-white">
+				<div class="w3-padding">
+					<h2>Comments</h2>
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+		var disqus_identifier = "blog/2016/android-studio-subversion.html";
+		(function() {
+			var dsq = document.createElement('script');
+			dsq.type = 'text/javascript';
+			dsq.async = true;
+			dsq.src = 'https://v1.rossgodwin.com.disqus.com/embed.js';
+			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+		})();
+	</script>
+				</div>
+			</div>
+		</div>
+		
+		<div class="w3-col l4 w3-padding">
+<div class="w3-white">
+	<div class="w3-padding w3-black">
+		<h4>Tags</h4>
+	</div>
+	<div class="w3-padding">			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/agile/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">agile (1)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/android/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">android (2)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/android-studio/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">android studio (2)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/angularjs/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">angularjs (6)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/apache/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">apache (3)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/batteries/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">batteries (1)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/bootstrap/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">bootstrap (1)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/css/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">css (1)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/dialogflow/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">dialogflow (1)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/eclipse/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">eclipse (2)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/emv-cards/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">emv cards (1)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/grunt/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">grunt (2)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/gxt2/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">gxt2 (1)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/gxt3/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">gxt3 (1)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/headjs/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">headjs (1)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/hibernate/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">hibernate (1)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/httpd/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">httpd (2)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/intellij/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">intellij (2)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/ios/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">ios (2)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/jboss/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">jboss (1)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/jsf/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">jsf (1)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/links/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">links (3)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/lipo/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">lipo (1)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/markdown/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">markdown (1)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/microsoft/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">microsoft (1)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/mod_proxy/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">mod_proxy (1)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/myfaces/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">myfaces (1)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/pelican/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">pelican (1)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/quartz/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">quartz (2)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/requirejs/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">requirejs (3)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/rewrite/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">rewrite (1)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/rg-archetype-j2ee-angularjs/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">rg-archetype-j2ee-angularjs (5)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/sencha/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">sencha (1)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/software-development/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">software development (1)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/splash-screen/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">splash screen (1)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/subversion/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">subversion (1)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/svn/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">svn (1)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/tortoisesvn/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">tortoisesvn (1)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/ui-router/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">ui-router (2)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/vss/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">vss (1)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/wildfly/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">wildfly (4)</a>
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/tag/xcode/" class="w3-button w3-margin-xxsmall w3-padding-small w3-border">xcode (2)</a>
+	</div>
+</div>			
+			<div class="w3-margin-top">
+<div class="w3-white">
+	<div class="w3-padding w3-black">
+		<h4>Follow Me</h4>
+	</div>
+	<div class="w3-padding">
+			<a href="https://github.com/rossgodwin" class="w3-margin-xxsmall" target="_blank"><i class="fa fa-github w3-xlarge w3-hover-opacity"></i></a>
+			<a href="feeds/all.xml" class="w3-margin-xxsmall"><i class="fa fa-rss-square w3-xlarge w3-hover-opacity"></i></a>
+	</div>
+</div>			</div>
+		</div>
+	</div>
+
+	</div>
+	
+<footer class="w3-container w3-dark-grey" style="padding:32px">
+	<div class="w3-row">
+		<div class="w3-col l4">
+			<a href="#" class="w3-button w3-black w3-padding-large w3-margin-bottom"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+			&nbsp;&nbsp;
+			<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/blog" class="w3-button w3-black w3-padding-large w3-margin-bottom">Blog</a>
+				&nbsp;&nbsp;
+				<a href="http://rossgodwin.github.io/v1.rossgodwin.com-src/archives/" class="w3-button w3-black w3-padding-large w3-margin-bottom">Archives</a>
+		</div>
+	</div>
+</footer>	
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-104084348-2', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+</script>
+
+
+	<script type="text/javascript" src="http://rossgodwin.github.io/v1.rossgodwin.com-src/theme/js/site.js"></script>
+	<script type="text/javascript">
+		(function() {
+			var dsq = document.createElement('script');
+			dsq.type = 'text/javascript';
+			dsq.async = true;
+			dsq.src = 'https://v1.rossgodwin.com.disqus.com/count.js';
+			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+		})();
+	</script>
+	<script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
+</body>
+
+</html>
