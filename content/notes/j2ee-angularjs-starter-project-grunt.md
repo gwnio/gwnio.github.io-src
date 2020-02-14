@@ -51,4 +51,4 @@ This will generate the following folders under ```{project root}\WebContent\clie
 
 Execute a clean ```grunt prod-clean``` to remove everything but the release directory ```dist```.
 
-Follow other writings on this project [here](./tag/rg-archetype-j2ee-angularjs).
+Follow other writings on this project [here]({tag}rg-archetype-j2ee-angularjs).
