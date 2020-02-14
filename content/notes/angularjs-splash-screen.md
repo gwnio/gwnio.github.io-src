@@ -17,4 +17,4 @@ Notice a couple of things:
 
 * ```function removeSplash()``` removes the splash html element containing the splash content.  This gets invoked when the main module is run ```module.run()``` but [after the initial route state is called](https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/blob/62336a6e6a6c4f8e234f6e52e8c07da315dc8c25/WebContent/client/src/app/app-secure.js#L23){:target="_blank"}.
 
-Follow other writings on this project [here](/tag/rg-archetype-j2ee-angularjs).
+Follow other writings on this project [here](tag/rg-archetype-j2ee-angularjs).
