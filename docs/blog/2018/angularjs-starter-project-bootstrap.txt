@@ -17,4 +17,4 @@ The boot file uses [requirejs](http://requirejs.org){:target="_blank"} to perfor
 
 The main module file contains the angular code to build the main module and submodules and then bootstrap, or start, the application by invoking [```angular.bootstrap()```](https://docs.angularjs.org/api/ng/function/angular.bootstrap){:target="_blank"}.
 
-Follow other writings on this project [here](tag/rg-archetype-j2ee-angularjs).
+Follow other writings on this project [here](./tag/rg-archetype-j2ee-angularjs).

@@ -23,4 +23,4 @@ Briefly about the application:
 
 * It also [utilizes](https://github.com/rossgodwin/rg-archetype-j2ee-angularjs/tree/master/WebContent/client/build){:target="_blank"} [Grunt](https://gruntjs.com/){:target="_blank"} to build a production ready distributable app.
 
-Follow other writings on this project [here](tag/rg-archetype-j2ee-angularjs).
+Follow other writings on this project [here](./tag/rg-archetype-j2ee-angularjs).

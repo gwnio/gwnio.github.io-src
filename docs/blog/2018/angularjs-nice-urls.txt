@@ -21,4 +21,4 @@ Lastly, this project uses [ui-router](https://github.com/angular-ui/ui-router){:
 
 [gist:id=dcfc29df2bc4bd7293934c9db9a09f4b]
 
-Follow other writings on this project [here](tag/rg-archetype-j2ee-angularjs).
+Follow other writings on this project [here](./tag/rg-archetype-j2ee-angularjs).
